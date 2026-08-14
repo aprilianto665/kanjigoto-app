@@ -68,7 +68,7 @@ Pada dokumen PDF Marugoto level lanjutan (seperti **A2.1 / 初級 1**, **A2.2 / 
 ## Progress Level
 
 - [x] **Level A1 (Katsudoo / Rikai)** - 65 Kanji (`src/data/marugoto-a1.ts`)
-- [ ] **Level A2.1 (Rikai / 初級 1)** - *Menunggu kelengkapan dokumen referensi*
+- [x] **Level A2.1 (Rikai / 初級 1)** - 156 Kanji (`src/data/marugoto-a2-1.ts`)
 - [ ] **Level A2.2 (Rikai / 初級 2)** - *Menunggu data/dokumen referensi*
 
 ## Kriteria Penerimaan (Acceptance Criteria)
