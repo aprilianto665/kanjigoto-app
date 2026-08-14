@@ -1,71 +1,69 @@
-# Issue: Ekstraksi Data Kanji Marugoto (Level A1)
+# Issue: Ekstraksi Data Master Kanji Marugoto (Semua Level)
 
-Issue ini berisi instruksi untuk mengekstrak data Kanji dari referensi PDF Marugoto A1 ke dalam file konstanta (data statis) yang akan digunakan oleh aplikasi **KanjiGoto**.
+Issue ini berisi pedoman dan instruksi umum untuk mengekstrak data master Kanji Marugoto dari referensi dokumen/PDF per level (A1, A2.1, A2.2, dst.) ke dalam file konstanta TypeScript di folder `src/data/`.
 
-Sesuai dengan arsitektur pada `KANJIGOTO_PROJECT_PLAN_V3.md`, aplikasi kita adalah aplikasi *Pure Frontend* tanpa database backend. Seluruh data Kanji disimpan dalam file `.ts` statis di dalam folder `src/data/`.
+Sesuai dengan arsitektur pada `KANJIGOTO_PROJECT_PLAN_V3.md`, seluruh data Kanji disimpan dalam file `.ts` statis secara modular per level.
 
 ## Konteks & Tujuan
-Tujuan tugas ini adalah menyalin dan menstrukturkan daftar Kanji A1 yang ada pada dokumen referensi ke dalam format array of object TypeScript. Data ini nantinya akan menjadi sumber data untuk navigasi folder level, grid view, serta kuis Drill dan Flashcard.
+Menyediakan master data Kanji yang terstruktur untuk seluruh level kurikulum Marugoto. Data ini digunakan untuk:
+- Navigasi folder level & bab di halaman utama (Mobile-First 2-Column Grid).
+- Kuis interaktif mode **Manual Input Drill** (RealKana style).
+- Mode **Randomized Flashcard** dengan toggle show/hide furigana & romaji.
 
 ## Struktur Data (TypeScript Interface)
 
-Sebelum membuat data, definisikan interface berikut di dalam `src/types/index.ts` (atau di dalam file datanya langsung):
+Interface didefinisikan pada `src/types/index.ts`:
 
 ```typescript
 export interface KanjiItem {
-  id: string;        // Format: '[level]-[nomor]', contoh: 'a1-1'
-  kanji: string;     // Karakter Kanji, contoh: '魚'
+  id: string;        // Format: '[level]-[nomor]', contoh: 'a1-1', 'a2-1-1'
+  kanji: string;     // Karakter Kanji / kata, contoh: '魚', '食べます'
   furigana: string;  // Cara baca Kana (hiragana/katakana), contoh: 'さかな'
   romaji: string;    // Cara baca Romaji, contoh: 'sakana'
-  chapter: number;   // Topik/Bab kemunculan Kanji, diambil dari kolom 'か' di referensi
+  chapter: number;   // Topik/Bab kemunculan Kanji (kolom 'か')
+  topic?: string;    // Nama Topik opsional jika relevan
 }
 ```
 
-## Tahapan Implementasi (Untuk Programmer / AI Agent)
+## Konvensi Penamaan & Format
 
-### 1. Buat File Data untuk Level A1
-1. Buat file baru di path: `src/data/marugoto-a1.ts`.
-2. Di dalam file tersebut, ekspor sebuah konstanta array (misalnya `export const MARUGOTO_A1: KanjiItem[] = [ ... ];`).
+1. **File Data per Level (`src/data/`):**
+   - Level A1: `marugoto-a1.ts` (`export const MARUGOTO_A1: KanjiItem[]`)
+   - Level A2.1: `marugoto-a2-1.ts` (`export const MARUGOTO_A2_1: KanjiItem[]`)
+   - Level A2.2: `marugoto-a2-2.ts` (`export const MARUGOTO_A2_2: KanjiItem[]`)
 
-### 2. Ekstraksi dan Translasi Data dari PDF
-Baca file referensi PDF Marugoto A1 yang diberikan. Anda akan melihat tabel dengan 3 kolom utama:
-- **かんじ (Kanji)** -> Masukkan ke properti `kanji`.
-- **よみかた (Yomikata/Furigana)** -> Masukkan ke properti `furigana`.
-- **か (Ka/Chapter)** -> Masukkan ke properti `chapter` sebagai angka (number).
+2. **Format ID:**
+   - A1: `a1-1`, `a1-2`, dst.
+   - A2.1: `a2-1-1`, `a2-1-2`, dst.
+   - A2.2: `a2-2-1`, `a2-2-2`, dst.
 
-**Tugas Tambahan pada proses ekstraksi:**
-- Kolom **Romaji** tidak ada di dokumen referensi. Anda harus menerjemahkan/mengonversi *Furigana* tersebut ke dalam *Romaji* secara manual/otomatis dan menyimpannya di properti `romaji`.
-- Kolom **id** dibuat dengan format `a1-[nomor urut]`.
+## Tahapan Implementasi Ekstraksi per Level
 
-**Contoh baris pertama dari PDF:**
-- Nomor urut: 1
-- Kanji: 魚
-- Yomikata: さかな
-- Ka: 5
+1. **Baca Dokumen / PDF Referensi Level:**
+   - **かんじ (Kanji)** -> Masukkan ke properti `kanji`.
+   - **よみかた (Yomikata/Furigana)** -> Masukkan ke properti `furigana`.
+   - **か (Ka/Chapter)** -> Masukkan ke properti `chapter` sebagai angka (`number`).
+   - **Romaji** -> Terjemahkan secara akurat dari *Furigana* (Hepburn standard).
 
-**Hasil Objek:**
-```typescript
-{
-  id: 'a1-1',
-  kanji: '魚',
-  furigana: 'さかな',
-  romaji: 'sakana',
-  chapter: 5
-}
-```
+2. **Buat / Update File Data:**
+   - Simpan array objek Kanji ke `src/data/marugoto-[level].ts`.
 
-### 3. Ekstrak Seluruh Data
-Lakukan proses di atas untuk seluruh baris Kanji yang ada di referensi A1 (mulai dari nomor 1 hingga selesai, perhatikan pembagian bab/topiknya). 
-
-### 4. Buat File Index (Data Entry Point)
-1. Buat file `src/data/index.ts`.
-2. Ekspor data dari `marugoto-a1.ts` agar mudah di-import oleh fitur lain.
+3. **Daftarkan ke Entry Point Data:**
+   - Ekspor konstanta dari `src/data/index.ts` agar mudah diakses oleh modul lain:
    ```typescript
    export { MARUGOTO_A1 } from './marugoto-a1';
+   export { MARUGOTO_A2_1 } from './marugoto-a2-1';
+   // dst...
    ```
 
-### Kriteria Penerimaan (Acceptance Criteria)
-- File `src/data/marugoto-a1.ts` berisi array lengkap dari seluruh Kanji di A1 sesuai referensi.
-- Setiap objek Kanji memiliki struktur `id`, `kanji`, `furigana`, `romaji`, dan `chapter` yang valid.
-- Tidak ada data Romaji yang salah ketik (harus sesuai dengan Furigana standar).
-- File tidak memiliki error TypeScript.
+## Progress Level
+
+- [x] **Level A1 (Katsudoo / Rikai)** - 65 Kanji (`src/data/marugoto-a1.ts`)
+- [ ] **Level A2.1 (Rikai)** - *Menunggu data/dokumen referensi*
+- [ ] **Level A2.2 (Rikai)** - *Menunggu data/dokumen referensi*
+
+## Kriteria Penerimaan (Acceptance Criteria)
+- Data Kanji setiap level diekstrak lengkap sesuai dokumen resmi Marugoto.
+- Nilai Romaji tepat dan bebas dari salah ketik.
+- Seluruh konstanta terekspor dengan rapi melalui `src/data/index.ts`.
+- `bun run build` lolos tanpa error TypeScript.
