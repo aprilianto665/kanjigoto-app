@@ -14,11 +14,11 @@ export const LevelSelectionView: React.FC<LevelSelectionViewProps> = ({
     <div className="flex-1 flex flex-col min-h-0 overflow-hidden px-5 pt-6 pb-2">
       {/* Header section with Logo and Playful Doodle Tagline */}
       <header className="shrink-0 flex flex-col items-center text-center mb-4">
-        <div className="w-full max-w-[260px] h-24 relative flex items-center justify-center mb-1">
+        <div className="w-28 h-28 relative flex items-center justify-center mb-1">
           <img
-            src="/kanjigoto_logo.png"
+            src="/kanjigoto_icon.png"
             alt="KanjiGoto Logo"
-            className="w-full h-full object-contain drop-shadow-sm scale-110"
+            className="w-full h-full object-contain drop-shadow-sm scale-115"
           />
         </div>
 
