@@ -11,11 +11,8 @@
   body {
     margin: 0;
     min-height: 100vh;
-    background-color: #FFFFFF;
-    background-image: url('/paper_background.jpg');
-    background-size: cover;
+    background: linear-gradient(145deg, #FBFBFA 0%, #F5F4EF 40%, #EAE8DF 100%);
     background-attachment: fixed;
-    background-position: center;
     color: #1c1917;
     font-family: var(--font-latin);
     -webkit-font-smoothing: antialiased;
@@ -80,7 +77,41 @@
   box-shadow: 1px 1px 0px 0px #1c1917 !important;
 }
 
-/* Hide scrollbars globally on scroll containers */
+/* Custom Toddler/Doodle Dashed Track & Orange Circle Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 14px;
+  height: 0px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: repeating-linear-gradient(
+    to bottom,
+    #1c1917 0px,
+    #1c1917 8px,
+    transparent 8px,
+    transparent 16px
+  ) no-repeat center / 2.5px 100%;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #FA6400;
+  border: 2.5px solid #1c1917;
+  border-radius: 9999px;
+  min-height: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #FF7E26;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #FA6400 transparent;
+}
+
+/* Hide scrollbar utility */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
