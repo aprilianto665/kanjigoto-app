@@ -10,7 +10,7 @@ export const MARUGOTO_LEVELS: LevelInfo[] = [
     subtitle: '35 Kanji Inside',
     kanjiCount: MARUGOTO_A1.length,
     available: true,
-    accentColor: '#C7D9FE', // pastel blue
+    accentColor: '#92B7FE', // pastel blue
     badgeBg: '#DDD6FE', // pastel purple
   },
   {
@@ -19,7 +19,7 @@ export const MARUGOTO_LEVELS: LevelInfo[] = [
     subtitle: '80 Kanji Inside',
     kanjiCount: MARUGOTO_A2_1.length,
     available: true,
-    accentColor: '#E8D4FE', // pastel purple
+    accentColor: '#D2B4FE', // pastel purple
     badgeBg: '#FED7AA', // pastel orange/peach
   },
   {
@@ -28,7 +28,7 @@ export const MARUGOTO_LEVELS: LevelInfo[] = [
     subtitle: '120 Kanji Inside',
     kanjiCount: MARUGOTO_A2_2.length,
     available: true,
-    accentColor: '#FED4D4', // pastel pink
+    accentColor: '#FEC2C7', // pastel pink
     badgeBg: '#BAE6FD', // pastel blue
   },
   {
@@ -37,7 +37,7 @@ export const MARUGOTO_LEVELS: LevelInfo[] = [
     subtitle: 'Under construction',
     kanjiCount: 0,
     available: false,
-    accentColor: '#E2E8F0', // pastel slate/gray
+    accentColor: '#CBD5E1', // pastel slate/gray
   },
 ];
 
