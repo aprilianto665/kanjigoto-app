@@ -21,13 +21,13 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
 }) => {
   if (mode === 'overview') {
     return (
-      <div className="sticky bottom-0 z-30 w-full px-4 py-3 bg-white/80 backdrop-blur-xs border-t-2 border-stone-800/10">
-        <div className="flex items-center justify-between gap-2 max-w-sm mx-auto">
+      <div className="sticky bottom-0 z-30 w-full px-4 py-3 bg-transparent">
+        <div className="flex items-center justify-between gap-2.5 max-w-sm mx-auto">
           {/* Back button */}
           <WobblyButton
             onClick={onBack}
             variant="secondary"
-            className="flex-1 py-2 text-sm"
+            className="flex-1"
           >
             ← Back
           </WobblyButton>
@@ -35,9 +35,8 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
           {/* Flashcard button */}
           <WobblyButton
             onClick={onStartFlashcard}
-            variant="dashed"
-            className="flex-1 py-2 text-sm"
-            icon={<span className="text-base">🎴</span>}
+            variant="secondary"
+            className="flex-1"
           >
             Flashcard
           </WobblyButton>
@@ -46,8 +45,7 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
           <WobblyButton
             onClick={onStartDrill}
             variant="primary"
-            className="flex-1 py-2 text-sm"
-            icon={<span className="text-base">✏️</span>}
+            className="flex-1"
           >
             Drill
           </WobblyButton>
@@ -57,14 +55,13 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
   }
 
   return (
-    <div className="sticky bottom-0 z-30 w-full px-4 py-3 bg-white/80 backdrop-blur-xs border-t-2 border-stone-800/10">
-      <div className="flex items-center justify-between gap-2 max-w-sm mx-auto">
+    <div className="sticky bottom-0 z-30 w-full px-4 py-3 bg-transparent">
+      <div className="flex items-center justify-between gap-2.5 max-w-sm mx-auto">
         {/* Kanji Tab */}
         <WobblyButton
           onClick={() => onTabChange?.('kanji')}
-          variant={activeTab === 'kanji' ? 'primary' : 'dashed'}
-          className="flex-1 py-2 text-sm"
-          icon={<span className="text-base">🏠</span>}
+          variant={activeTab === 'kanji' ? 'primary' : 'secondary'}
+          className="flex-1"
         >
           Kanji
         </WobblyButton>
@@ -75,9 +72,8 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
             onTabChange?.('flashcard');
             onStartFlashcard?.();
           }}
-          variant={activeTab === 'flashcard' ? 'primary' : 'dashed'}
-          className="flex-1 py-2 text-sm"
-          icon={<span className="text-base">🎴</span>}
+          variant={activeTab === 'flashcard' ? 'primary' : 'secondary'}
+          className="flex-1"
         >
           Flashcard
         </WobblyButton>
@@ -88,9 +84,8 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
             onTabChange?.('drill');
             onStartDrill?.();
           }}
-          variant={activeTab === 'drill' ? 'primary' : 'dashed'}
-          className="flex-1 py-2 text-sm"
-          icon={<span className="text-base">✏️</span>}
+          variant={activeTab === 'drill' ? 'primary' : 'secondary'}
+          className="flex-1"
         >
           Drill
         </WobblyButton>

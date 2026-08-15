@@ -5,7 +5,6 @@ interface WobblyButtonProps {
   onClick?: () => void;
   className?: string;
   variant?: 'primary' | 'secondary' | 'active' | 'dashed';
-  icon?: React.ReactNode;
   disabled?: boolean;
 }
 
@@ -14,33 +13,30 @@ export const WobblyButton: React.FC<WobblyButtonProps> = ({
   onClick,
   className = '',
   variant = 'secondary',
-  icon,
   disabled = false,
 }) => {
-  const getVariantStyles = () => {
-    switch (variant) {
-      case 'active':
-      case 'primary':
-        return 'bg-[#93C5FD] text-stone-900 border-2 border-stone-800 shadow-doodle hover:bg-[#7DB2F8]';
-      case 'dashed':
-        return 'bg-white text-stone-900 border-2 border-dashed border-stone-800 shadow-doodle hover:bg-stone-50';
-      case 'secondary':
-      default:
-        return 'bg-white text-stone-900 border-2 border-stone-800 shadow-doodle hover:bg-stone-50';
-    }
-  };
+  const isActive = variant === 'active' || variant === 'primary';
 
   return (
     <button
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 font-handwritten text-base font-bold transition-all wobbly-pill btn-press ${getVariantStyles()} ${
-        disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'
-      } ${className}`}
+      className={`relative inline-flex items-center justify-center p-[3px] border-2 border-stone-900 rounded-2xl transition-all cursor-pointer select-none active:scale-[0.97] ${
+        isActive ? 'bg-[#8BB4F8]' : 'bg-white'
+      } ${disabled ? 'opacity-40 cursor-not-allowed' : ''} ${className}`}
     >
-      {icon && <span className="inline-flex items-center text-base">{icon}</span>}
-      <span>{children}</span>
+      <div
+        className={`w-full h-full flex items-center justify-center px-3.5 py-1.5 border-2 border-dashed rounded-[10px] ${
+          isActive
+            ? 'border-[#5C8CE0] text-stone-900'
+            : 'border-stone-400 text-stone-900'
+        }`}
+      >
+        <span className="font-handwritten text-lg font-bold tracking-wide">
+          {children}
+        </span>
+      </div>
     </button>
   );
 };
