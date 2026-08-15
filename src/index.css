@@ -2,6 +2,7 @@
 
 @layer base {
   :root {
+    --font-header: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-latin: 'Gaegu', 'Kalam', cursive, sans-serif;
     --font-kalam: 'Kalam', cursive, sans-serif;
     --font-kanji: 'Zen Maru Gothic', system-ui, sans-serif;
@@ -22,6 +23,10 @@
 }
 
 /* Custom Typography Utilities */
+.font-header {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
 .font-handwritten {
   font-family: 'Gaegu', 'Kalam', cursive, sans-serif;
 }

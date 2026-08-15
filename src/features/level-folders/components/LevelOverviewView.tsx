@@ -19,7 +19,7 @@ export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) =
     <div className="flex-1 flex flex-col px-4 pt-6 pb-6">
       {/* Header with Level Title */}
       <header className="text-center mb-6">
-        <h1 className="text-2xl sm:text-3xl font-black text-stone-900 tracking-tight">
+        <h1 className="font-header font-bold text-2xl text-stone-900 tracking-tight">
           Marugoto {level.title.split(' ')[0]}
         </h1>
         <p className="font-handwritten text-sm text-stone-600 font-bold mt-0.5">
