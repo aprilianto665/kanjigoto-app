@@ -55,40 +55,40 @@ export function getKanjiByLevel(levelId: LevelId): KanjiItem[] {
 }
 
 // Chapter Topic Title Mappings for Marugoto
-const CHAPTER_TITLES: Record<string, Record<number, { title: string; icon: string }>> = {
+const CHAPTER_TITLES: Record<string, Record<number, string>> = {
   a1: {
-    5: { title: 'Bab 5: Tabemono', icon: '🍴' },
-    6: { title: 'Bab 6: Nomimono', icon: '🍵' },
-    8: { title: 'Bab 8: Ie', icon: '🏠' },
-    9: { title: 'Bab 9: Jikan', icon: '⏰' },
-    10: { title: 'Bab 10: Youbi', icon: '📅' },
-    11: { title: 'Bab 11: Yasumi no hi 1', icon: '🏖️' },
-    12: { title: 'Bab 12: Suuji', icon: '🔢' },
-    13: { title: 'Bab 13: Machi', icon: '🗺️' },
-    16: { title: 'Bab 16: Kaimono', icon: '🛍️' },
-    18: { title: 'Bab 18: Yasumi no hi 2', icon: '✈️' },
+    5: 'Bab 5: Tabemono',
+    6: 'Bab 6: Nomimono',
+    8: 'Bab 8: Ie',
+    9: 'Bab 9: Jikan',
+    10: 'Bab 10: Youbi',
+    11: 'Bab 11: Yasumi no hi 1',
+    12: 'Bab 12: Suuji',
+    13: 'Bab 13: Machi',
+    16: 'Bab 16: Kaimono',
+    18: 'Bab 18: Yasumi no hi 2',
   },
   'a2-1': {
-    1: { title: 'Bab 1: Watashi to Kazoku', icon: '👨‍👩‍👧' },
-    2: { title: 'Bab 2: Kuni to Gengo', icon: '🌏' },
-    3: { title: 'Bab 3: Tabemono', icon: '🍱' },
-    4: { title: 'Bab 4: Ie to Kurashi', icon: '🏡' },
-    5: { title: 'Bab 5: Mainichi no Seikatsu', icon: '☀️' },
-    6: { title: 'Bab 6: Yasumi no Sugoshikata', icon: '🎮' },
-    7: { title: 'Bab 7: Machi no Shisetsu', icon: '🏢' },
-    8: { title: 'Bab 8: Kaimono', icon: '🛒' },
-    9: { title: 'Bab 9: Kisetsu to Tenki', icon: '⛅' },
+    1: 'Bab 1: Watashi to Kazoku',
+    2: 'Bab 2: Kuni to Gengo',
+    3: 'Bab 3: Tabemono',
+    4: 'Bab 4: Ie to Kurashi',
+    5: 'Bab 5: Mainichi no Seikatsu',
+    6: 'Bab 6: Yasumi no Sugoshikata',
+    7: 'Bab 7: Machi no Shisetsu',
+    8: 'Bab 8: Kaimono',
+    9: 'Bab 9: Kisetsu to Tenki',
   },
   'a2-2': {
-    10: { title: 'Bab 10: Kenkou to Karada', icon: '🩺' },
-    11: { title: 'Bab 11: Iwai to Purezento', icon: '🎁' },
-    12: { title: 'Bab 12: Shumi to Supootsu', icon: '⚽' },
-    13: { title: 'Bab 13: Omoide to Ryokou', icon: '📸' },
-    14: { title: 'Bab 14: Koutsuu to Douro', icon: '🚗' },
-    15: { title: 'Bab 15: Omaturi to Ibento', icon: '🏮' },
-    16: { title: 'Bab 16: Shizen to Kankyou', icon: '🌲' },
-    17: { title: 'Bab 17: Shigoto to Shokuba', icon: '💼' },
-    18: { title: 'Bab 18: Nihon no Bunka', icon: '🏯' },
+    10: 'Bab 10: Kenkou to Karada',
+    11: 'Bab 11: Iwai to Purezento',
+    12: 'Bab 12: Shumi to Supootsu',
+    13: 'Bab 13: Omoide to Ryokou',
+    14: 'Bab 14: Koutsuu to Douro',
+    15: 'Bab 15: Omaturi to Ibento',
+    16: 'Bab 16: Shizen to Kankyou',
+    17: 'Bab 17: Shigoto to Shokuba',
+    18: 'Bab 18: Nihon no Bunka',
   },
 };
 
@@ -114,16 +114,13 @@ export function groupKanjiByChapter(items: KanjiItem[], levelId: LevelId): Chapt
   let colorIndex = 0;
 
   for (const [chapter, groupItems] of chapterMap.entries()) {
-    const chapterMeta = CHAPTER_TITLES[levelId]?.[chapter];
-    const title = chapterMeta?.title || `Bab ${chapter}`;
-    const icon = chapterMeta?.icon || '🔖';
+    const title = CHAPTER_TITLES[levelId]?.[chapter] || `Bab ${chapter}`;
     const badgeBg = BADGE_COLORS[colorIndex % BADGE_COLORS.length];
     colorIndex++;
 
     groups.push({
       chapter,
       title,
-      icon,
       badgeBg,
       items: groupItems,
     });

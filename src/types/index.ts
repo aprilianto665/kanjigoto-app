@@ -23,7 +23,6 @@ export interface ChapterGroup {
   chapter: number;
   title: string;
   badgeBg: string;
-  icon?: string;
   items: KanjiItem[];
 }
 

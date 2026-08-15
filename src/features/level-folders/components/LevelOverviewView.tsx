@@ -31,11 +31,10 @@ export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) =
       <main className="space-y-6 max-w-sm mx-auto w-full">
         {chapterGroups.map((group) => (
           <section key={group.chapter} className="space-y-3">
-            {/* Chapter Separator Badge */}
+            {/* Chapter Separator Badge with Heroicon Bookmark */}
             <div className="flex items-center">
               <ChapterBadge
                 title={group.title}
-                icon={group.icon}
                 colorClass={group.badgeBg}
               />
             </div>

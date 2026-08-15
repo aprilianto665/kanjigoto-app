@@ -1,4 +1,5 @@
 import React from 'react';
+import { BookOpenIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline';
 import type { LevelInfo } from '../../../types';
 import { WobblyCard } from '../../../components/ui/WobblyCard';
 
@@ -23,12 +24,12 @@ export const FolderCard: React.FC<FolderCardProps> = ({ level, onSelect }) => {
         <div className="mt-1 flex items-center gap-1.5 font-handwritten text-base font-bold text-stone-600">
           {level.available ? (
             <>
-              <span className="text-base">📖</span>
+              <BookOpenIcon className="w-4 h-4 text-stone-700 stroke-2" />
               <span>{level.subtitle}</span>
             </>
           ) : (
             <>
-              <span className="text-base">🛠️</span>
+              <WrenchScrewdriverIcon className="w-4 h-4 text-stone-500 stroke-2" />
               <span className="italic">{level.subtitle}</span>
             </>
           )}

@@ -29,12 +29,12 @@ export default function App() {
 
   const handleStartFlashcard = () => {
     const levelName = selectedLevel ? selectedLevel.title : 'Marugoto';
-    showToast(`🎴 Flashcard mode untuk ${levelName} segera hadir di issue berikutnya!`);
+    showToast(`Mode Flashcard untuk ${levelName} segera hadir di issue berikutnya!`);
   };
 
   const handleStartDrill = () => {
     const levelName = selectedLevel ? selectedLevel.title : 'Marugoto';
-    showToast(`✏️ RealKana Drill mode untuk ${levelName} segera hadir di issue berikutnya!`);
+    showToast(`Mode RealKana Drill untuk ${levelName} segera hadir di issue berikutnya!`);
   };
 
   return (
