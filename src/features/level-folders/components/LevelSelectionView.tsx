@@ -12,8 +12,8 @@ export const LevelSelectionView: React.FC<LevelSelectionViewProps> = ({
 }) => {
   return (
     <div className="flex-1 flex flex-col min-h-0 overflow-hidden px-5 pt-6 pb-2">
-      {/* Header section with Logo and Tagline (fixed at top) */}
-      <header className="shrink-0 flex flex-col items-center text-center mb-3">
+      {/* Header section with Logo and Playful Doodle Tagline */}
+      <header className="shrink-0 flex flex-col items-center text-center mb-4">
         <div className="w-full max-w-[260px] h-24 relative flex items-center justify-center mb-1">
           <img
             src="/kanjigoto_logo.png"
@@ -21,12 +21,26 @@ export const LevelSelectionView: React.FC<LevelSelectionViewProps> = ({
             className="w-full h-full object-contain drop-shadow-sm scale-110"
           />
         </div>
-        <h1 className="font-header font-bold text-lg sm:text-xl text-stone-900 leading-snug max-w-[320px]">
-          Learn and Master Marugoto Kanji with KanjiGoto
-        </h1>
+
+        <div className="flex flex-col items-center max-w-[320px]">
+          <p className="font-handwritten font-bold text-base text-stone-600 tracking-wide flex items-center gap-1.5">
+            <span className="text-stone-400 text-xs">✦</span>
+            <span>Learn and Master</span>
+            <span className="text-stone-400 text-xs">✦</span>
+          </p>
+
+          <h1 className="font-header font-extrabold text-xl text-stone-900 tracking-tight mt-1 flex items-center justify-center flex-wrap gap-1.5">
+            <span className="inline-block px-2.5 py-0.5 bg-[#FEF08A] border-2 border-stone-900 rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,0.22)] text-stone-900">
+              Marugoto Kanji
+            </span>
+            <span className="font-handwritten font-bold text-lg text-stone-700">
+              with KanjiGoto
+            </span>
+          </h1>
+        </div>
       </header>
 
-      {/* Level Folder List: scrollable container without visible scrollbar */}
+      {/* Level Folder List: scrollable without scrollbar */}
       <main className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar min-h-0 space-y-5 max-w-sm mx-auto w-full pt-4 pb-4 px-2">
         {MARUGOTO_LEVELS.map((level) => (
           <FolderCard
