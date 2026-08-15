@@ -19,13 +19,12 @@ export const WobblyCard: React.FC<WobblyCardProps> = ({
 
   return (
     <div className={`relative ${className}`}>
-      {/* Backplate peeking to the top-right with organic hand-drawn curve */}
+      {/* Backplate: clean standard rounded rectangle (not wobbly), peeking top-right */}
       {backplateColor && (
         <div
-          className="absolute -top-1.5 left-1.5 w-full h-full border-2 border-stone-900 pointer-events-none"
+          className="absolute -top-1.5 left-1.5 w-full h-full border-2 border-stone-900 rounded-xl pointer-events-none"
           style={{
             backgroundColor: backplateColor,
-            borderRadius: '20px 255px 20px 255px / 255px 20px 255px 20px',
           }}
           aria-hidden="true"
         />
