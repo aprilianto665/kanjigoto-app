@@ -57,38 +57,38 @@ export function getKanjiByLevel(levelId: LevelId): KanjiItem[] {
 // Chapter Topic Title Mappings for Marugoto
 const CHAPTER_TITLES: Record<string, Record<number, string>> = {
   a1: {
-    5: 'Bab 5: Tabemono',
-    6: 'Bab 6: Nomimono',
-    8: 'Bab 8: Ie',
-    9: 'Bab 9: Jikan',
-    10: 'Bab 10: Youbi',
-    11: 'Bab 11: Yasumi no hi 1',
-    12: 'Bab 12: Suuji',
-    13: 'Bab 13: Machi',
-    16: 'Bab 16: Kaimono',
-    18: 'Bab 18: Yasumi no hi 2',
+    5: 'Chapter 5: Tabemono',
+    6: 'Chapter 6: Nomimono',
+    8: 'Chapter 8: Ie',
+    9: 'Chapter 9: Jikan',
+    10: 'Chapter 10: Youbi',
+    11: 'Chapter 11: Yasumi no hi 1',
+    12: 'Chapter 12: Suuji',
+    13: 'Chapter 13: Machi',
+    16: 'Chapter 16: Kaimono',
+    18: 'Chapter 18: Yasumi no hi 2',
   },
   'a2-1': {
-    1: 'Bab 1: Watashi to Kazoku',
-    2: 'Bab 2: Kuni to Gengo',
-    3: 'Bab 3: Tabemono',
-    4: 'Bab 4: Ie to Kurashi',
-    5: 'Bab 5: Mainichi no Seikatsu',
-    6: 'Bab 6: Yasumi no Sugoshikata',
-    7: 'Bab 7: Machi no Shisetsu',
-    8: 'Bab 8: Kaimono',
-    9: 'Bab 9: Kisetsu to Tenki',
+    1: 'Chapter 1: Watashi to Kazoku',
+    2: 'Chapter 2: Kuni to Gengo',
+    3: 'Chapter 3: Tabemono',
+    4: 'Chapter 4: Ie to Kurashi',
+    5: 'Chapter 5: Mainichi no Seikatsu',
+    6: 'Chapter 6: Yasumi no Sugoshikata',
+    7: 'Chapter 7: Machi no Shisetsu',
+    8: 'Chapter 8: Kaimono',
+    9: 'Chapter 9: Kisetsu to Tenki',
   },
   'a2-2': {
-    10: 'Bab 10: Kenkou to Karada',
-    11: 'Bab 11: Iwai to Purezento',
-    12: 'Bab 12: Shumi to Supootsu',
-    13: 'Bab 13: Omoide to Ryokou',
-    14: 'Bab 14: Koutsuu to Douro',
-    15: 'Bab 15: Omaturi to Ibento',
-    16: 'Bab 16: Shizen to Kankyou',
-    17: 'Bab 17: Shigoto to Shokuba',
-    18: 'Bab 18: Nihon no Bunka',
+    10: 'Chapter 10: Kenkou to Karada',
+    11: 'Chapter 11: Iwai to Purezento',
+    12: 'Chapter 12: Shumi to Supootsu',
+    13: 'Chapter 13: Omoide to Ryokou',
+    14: 'Chapter 14: Koutsuu to Douro',
+    15: 'Chapter 15: Omaturi to Ibento',
+    16: 'Chapter 16: Shizen to Kankyou',
+    17: 'Chapter 17: Shigoto to Shokuba',
+    18: 'Chapter 18: Nihon no Bunka',
   },
 };
 
@@ -114,7 +114,7 @@ export function groupKanjiByChapter(items: KanjiItem[], levelId: LevelId): Chapt
   let colorIndex = 0;
 
   for (const [chapter, groupItems] of chapterMap.entries()) {
-    const title = CHAPTER_TITLES[levelId]?.[chapter] || `Bab ${chapter}`;
+    const title = CHAPTER_TITLES[levelId]?.[chapter] || `Chapter ${chapter}`;
     const badgeBg = BADGE_COLORS[colorIndex % BADGE_COLORS.length];
     colorIndex++;
 
