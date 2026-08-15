@@ -2,6 +2,7 @@ import React from 'react';
 
 interface WobblyButtonProps {
   children: React.ReactNode;
+  icon?: React.ReactNode;
   onClick?: () => void;
   className?: string;
   variant?: 'primary' | 'secondary' | 'active' | 'dashed';
@@ -10,6 +11,7 @@ interface WobblyButtonProps {
 
 export const WobblyButton: React.FC<WobblyButtonProps> = ({
   children,
+  icon,
   onClick,
   className = '',
   variant = 'secondary',
@@ -27,12 +29,13 @@ export const WobblyButton: React.FC<WobblyButtonProps> = ({
       } ${disabled ? 'opacity-40 cursor-not-allowed' : ''} ${className}`}
     >
       <div
-        className={`w-full h-full flex items-center justify-center px-3.5 py-1.5 border-2 border-dashed rounded-[10px] ${
+        className={`w-full h-full flex items-center justify-center gap-1.5 px-3 py-1.5 border-2 border-dashed rounded-[10px] ${
           isActive
             ? 'border-[#5C8CE0] text-stone-900'
             : 'border-stone-400 text-stone-900'
         }`}
       >
+        {icon && <span className="inline-flex items-center">{icon}</span>}
         <span className="font-handwritten text-lg font-bold tracking-wide">
           {children}
         </span>

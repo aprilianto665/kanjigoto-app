@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  ArrowLeftIcon,
+  HomeIcon,
+  PencilSquareIcon,
+  Square2StackIcon,
+} from '@heroicons/react/24/outline';
 import type { NavTab } from '../../types';
 import { WobblyButton } from './WobblyButton';
 
@@ -28,8 +34,9 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
             onClick={onBack}
             variant="secondary"
             className="flex-1"
+            icon={<ArrowLeftIcon className="w-4 h-4 stroke-2" />}
           >
-            ← Back
+            Back
           </WobblyButton>
 
           {/* Flashcard button */}
@@ -37,6 +44,7 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
             onClick={onStartFlashcard}
             variant="secondary"
             className="flex-1"
+            icon={<Square2StackIcon className="w-4 h-4 stroke-2" />}
           >
             Flashcard
           </WobblyButton>
@@ -46,6 +54,7 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
             onClick={onStartDrill}
             variant="primary"
             className="flex-1"
+            icon={<PencilSquareIcon className="w-4 h-4 stroke-2" />}
           >
             Drill
           </WobblyButton>
@@ -62,6 +71,7 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
           onClick={() => onTabChange?.('kanji')}
           variant={activeTab === 'kanji' ? 'primary' : 'secondary'}
           className="flex-1"
+          icon={<HomeIcon className="w-4 h-4 stroke-2" />}
         >
           Kanji
         </WobblyButton>
@@ -74,6 +84,7 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
           }}
           variant={activeTab === 'flashcard' ? 'primary' : 'secondary'}
           className="flex-1"
+          icon={<Square2StackIcon className="w-4 h-4 stroke-2" />}
         >
           Flashcard
         </WobblyButton>
@@ -86,6 +97,7 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
           }}
           variant={activeTab === 'drill' ? 'primary' : 'secondary'}
           className="flex-1"
+          icon={<PencilSquareIcon className="w-4 h-4 stroke-2" />}
         >
           Drill
         </WobblyButton>
