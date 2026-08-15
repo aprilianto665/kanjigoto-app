@@ -14,7 +14,7 @@ export const FolderCard: React.FC<FolderCardProps> = ({ level, onSelect }) => {
       backplateColor={level.accentColor}
       disabled={!level.available}
       onClick={() => level.available && onSelect(level)}
-      className="w-full my-1"
+      className="w-full"
     >
       <div className="px-5 py-4 flex flex-col justify-center">
         <h2 className="font-header font-bold text-xl text-stone-900 tracking-tight">

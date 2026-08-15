@@ -11,7 +11,7 @@ export const LevelSelectionView: React.FC<LevelSelectionViewProps> = ({
   onSelectLevel,
 }) => {
   return (
-    <div className="flex-1 flex flex-col px-5 pt-8 pb-4">
+    <div className="flex-1 flex flex-col px-5 pt-8 pb-6">
       {/* Header section with Logo and Tagline */}
       <header className="flex flex-col items-center text-center mb-6">
         <div className="w-full max-w-[270px] h-28 relative flex items-center justify-center mb-2">
@@ -26,8 +26,8 @@ export const LevelSelectionView: React.FC<LevelSelectionViewProps> = ({
         </h1>
       </header>
 
-      {/* Level Folder List */}
-      <main className="flex-1 flex flex-col justify-start space-y-3 max-w-sm mx-auto w-full">
+      {/* Level Folder List with comfortable vertical spacing */}
+      <main className="flex-1 flex flex-col justify-start space-y-5 max-w-sm mx-auto w-full pt-1 pb-4">
         {MARUGOTO_LEVELS.map((level) => (
           <FolderCard
             key={level.id}

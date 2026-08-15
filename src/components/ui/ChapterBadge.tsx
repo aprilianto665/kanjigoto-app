@@ -11,7 +11,7 @@ interface ChapterBadgeProps {
 export const ChapterBadge: React.FC<ChapterBadgeProps> = ({
   title,
   icon,
-  colorClass = 'bg-[#DDD6FE] text-purple-900 border-stone-800',
+  colorClass = 'bg-[#DDD6FE] text-purple-900 border-stone-900',
   className = '',
 }) => {
   return (
