@@ -16,12 +16,15 @@ export const ChapterBadge: React.FC<ChapterBadgeProps> = ({
 }) => {
   return (
     <div
-      className={`inline-flex items-center gap-1.5 px-3 py-1 font-handwritten font-bold text-base border-2 shadow-doodle-sm wobbly-badge ${colorClass} ${className}`}
+      className={`inline-flex items-center gap-1.5 px-3.5 py-1 font-header font-bold text-sm sm:text-base border-2 rounded-[10px] ${colorClass} ${className}`}
+      style={{
+        boxShadow: '2.5px 2.5px 0px 0px rgba(0, 0, 0, 0.22)',
+      }}
     >
       {icon ? (
         <span className="inline-flex items-center">{icon}</span>
       ) : (
-        <BookmarkIcon className="w-4 h-4 stroke-2" />
+        <BookmarkIcon className="w-4 h-4 stroke-[2.5]" />
       )}
       <span className="tracking-wide">{title}</span>
     </div>
