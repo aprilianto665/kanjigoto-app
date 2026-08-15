@@ -19,6 +19,7 @@
     color: #1c1917;
     font-family: var(--font-latin);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 }
 
@@ -79,14 +80,11 @@
   box-shadow: 1px 1px 0px 0px #1c1917 !important;
 }
 
-/* Custom Scrollbar for clean mobile preview */
-::-webkit-scrollbar {
-  width: 5px;
+/* Hide scrollbars globally on scroll containers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

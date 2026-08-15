@@ -27,7 +27,7 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
 }) => {
   if (mode === 'overview') {
     return (
-      <div className="sticky bottom-0 z-30 w-full px-4 py-3 bg-transparent">
+      <div className="shrink-0 w-full px-4 py-3 bg-transparent">
         <div className="flex items-center justify-between gap-2.5 max-w-sm mx-auto">
           {/* Back button */}
           <WobblyButton
@@ -64,7 +64,7 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
   }
 
   return (
-    <div className="sticky bottom-0 z-30 w-full px-4 py-3 bg-transparent">
+    <div className="shrink-0 w-full px-4 py-3 bg-transparent">
       <div className="flex items-center justify-between gap-2.5 max-w-sm mx-auto">
         {/* Kanji Tab */}
         <WobblyButton

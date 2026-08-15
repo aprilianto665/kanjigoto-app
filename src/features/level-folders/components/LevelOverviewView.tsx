@@ -16,9 +16,9 @@ export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) =
   );
 
   return (
-    <div className="flex-1 flex flex-col px-4 pt-6 pb-6">
-      {/* Header with Level Title */}
-      <header className="text-center mb-6">
+    <div className="flex-1 flex flex-col min-h-0 overflow-hidden px-4 pt-6 pb-2">
+      {/* Header with Level Title (fixed at top) */}
+      <header className="shrink-0 text-center mb-3">
         <h1 className="font-header font-bold text-2xl text-stone-900 tracking-tight">
           Marugoto {level.title.split(' ')[0]}
         </h1>
@@ -27,8 +27,8 @@ export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) =
         </p>
       </header>
 
-      {/* Chapters & 2-Column Kanji Grids */}
-      <main className="space-y-6 max-w-sm mx-auto w-full">
+      {/* Chapters & 2-Column Kanji Grids: scrollable container without visible scrollbar */}
+      <main className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar min-h-0 space-y-6 max-w-sm mx-auto w-full pt-1 pb-4 px-1">
         {chapterGroups.map((group) => (
           <section key={group.chapter} className="space-y-3">
             {/* Chapter Separator Badge with Heroicon Bookmark */}

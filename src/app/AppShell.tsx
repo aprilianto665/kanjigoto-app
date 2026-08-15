@@ -7,7 +7,7 @@ interface AppShellProps {
 export const AppShell: React.FC<AppShellProps> = ({ children }) => {
   return (
     <div
-      className="min-h-screen w-full flex justify-center bg-white"
+      className="h-screen w-full flex justify-center bg-white overflow-hidden"
       style={{
         backgroundColor: '#FFFFFF',
         backgroundImage: `url('/paper_background.jpg')`,
@@ -17,8 +17,8 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
         backgroundRepeat: 'no-repeat',
       }}
     >
-      {/* Centered mobile content viewport */}
-      <div className="w-full max-w-md min-h-screen flex flex-col relative">
+      {/* Centered mobile viewport container locked to 100vh */}
+      <div className="w-full max-w-md h-full max-h-screen flex flex-col relative overflow-hidden">
         {children}
       </div>
     </div>
