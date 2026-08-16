@@ -32,7 +32,10 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
   // Mode Overview (when inside LevelOverviewView in Folders tab): Back, Cards, Drill
   if (mode === 'overview') {
     return (
-      <div className="shrink-0 w-full px-4 py-3 bg-transparent">
+      <div
+        className="shrink-0 w-full px-4 pt-3 bg-transparent"
+        style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}
+      >
         <div className="flex items-center justify-between gap-2.5 max-w-sm mx-auto">
           {/* Back button */}
           <WobblyButton
@@ -71,7 +74,10 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
   // Mode Session (when inside Flashcard Chapter Select or Flashcard Practice): Back, Kanji (Home), Drill
   if (mode === 'session') {
     return (
-      <div className="shrink-0 w-full px-4 py-3 bg-transparent">
+      <div
+        className="shrink-0 w-full px-4 pt-3 bg-transparent"
+        style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}
+      >
         <div className="flex items-center justify-between gap-2.5 max-w-sm mx-auto">
           {/* Back button */}
           <WobblyButton
@@ -109,7 +115,10 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
 
   // Mode Home (Tabs on root screens): Folders, Cards, Drill
   return (
-    <div className="shrink-0 w-full px-4 py-3 bg-transparent">
+    <div
+      className="shrink-0 w-full px-4 pt-3 bg-transparent"
+      style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}
+    >
       <div className="flex items-center justify-between gap-2.5 max-w-sm mx-auto">
         {/* Folders Tab */}
         <WobblyButton
