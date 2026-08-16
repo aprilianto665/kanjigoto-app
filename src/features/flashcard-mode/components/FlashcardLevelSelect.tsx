@@ -33,10 +33,10 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
 
   return (
     <div className="flex-1 flex flex-col min-h-0 overflow-hidden px-5 pt-6 pb-2 max-w-sm mx-auto w-full">
-      {/* Reusable LogoHeader with Kanji Selection Title */}
+      {/* Reusable LogoHeader with Flashcard Kanji Selection Title */}
       <LogoHeader>
         <h1 className="font-header font-extrabold text-2xl text-stone-900 tracking-tight">
-          Kanji Selection
+          Flashcard Kanji Selection
         </h1>
       </LogoHeader>
 
@@ -98,7 +98,7 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
         {/* Selection Status Row */}
         <div className="flex items-center justify-between gap-3">
           {/* Green Counter Pill */}
-          <div className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#BBF7D0] border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)]">
+          <div className="h-11 flex-1 inline-flex items-center justify-center gap-2 px-3 bg-[#BBF7D0] border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)]">
             <LanguageIcon className="w-4 h-4 text-stone-900 stroke-2" />
             <span className="font-header font-bold text-base text-stone-900 tracking-tight">
               {totalSelectedCount} Kanji Selected
@@ -110,11 +110,13 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
             type="button"
             onClick={onClearSelection}
             disabled={totalSelectedCount === 0}
-            className={`relative p-[3px] bg-[#FEC2C7] border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)] cursor-pointer transition-all active:scale-95 ${
-              totalSelectedCount === 0 ? 'opacity-40 cursor-not-allowed shadow-none' : ''
+            className={`h-11 inline-flex items-center justify-center p-[3px] bg-[#FEC2C7] border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)] transition-all ${
+              totalSelectedCount === 0
+                ? 'opacity-40 cursor-not-allowed shadow-none'
+                : 'cursor-pointer active:scale-95'
             }`}
           >
-            <div className="w-full h-full flex items-center justify-center gap-1 px-3 py-1.5 border-2 border-dashed border-[#F472B6] rounded-[7px] text-red-900 font-handwritten font-bold text-base">
+            <div className="w-full h-full flex items-center justify-center gap-1 px-3 border-2 border-dashed border-[#F472B6] rounded-[7px] text-red-900 font-handwritten font-bold text-base">
               <XMarkIcon className="w-4 h-4 text-red-900 stroke-2" />
               <span>Clear</span>
             </div>
