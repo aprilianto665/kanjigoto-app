@@ -51,7 +51,7 @@ export const FlashcardChapterSelect: React.FC<FlashcardChapterSelectProps> = ({
         <button
           type="button"
           onClick={() => onToggleAllInLevel(kanjiList)}
-          className="w-full relative inline-flex items-center justify-center p-[3px] bg-[#8BB4F8] border-2 border-stone-900 rounded-2xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.9)] cursor-pointer select-none active:scale-[0.98] transition-all"
+          className="w-full relative inline-flex items-center justify-center p-[3px] bg-[#8BB4F8] border-2 border-stone-900 rounded-2xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)] cursor-pointer select-none active:scale-[0.98] transition-all"
         >
           <div className="w-full h-full flex items-center justify-center gap-2 px-4 py-2 border-2 border-dashed border-[#5C8CE0] rounded-[10px]">
             {areAllSelected ? (
@@ -83,7 +83,7 @@ export const FlashcardChapterSelect: React.FC<FlashcardChapterSelectProps> = ({
           return (
             <div
               key={group.chapter}
-              className="w-full relative p-[3px] bg-white border-2 border-stone-900 rounded-2xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.9)] transition-all"
+              className="w-full relative p-[3px] bg-white border-2 border-stone-900 rounded-2xl shadow-[2px_3px_0px_0px_rgba(0,0,0,0.18)] transition-all"
             >
               <div className="w-full h-full border-2 border-dashed border-stone-300 rounded-[10px] p-3.5 flex flex-col gap-2">
                 {/* Chapter Title & Action Button */}
@@ -99,7 +99,7 @@ export const FlashcardChapterSelect: React.FC<FlashcardChapterSelectProps> = ({
                   <button
                     type="button"
                     onClick={() => onToggleChapter(group.items)}
-                    className={`w-7 h-7 flex items-center justify-center border-2 border-stone-900 rounded-lg shadow-[1px_1px_0px_0px_rgba(0,0,0,0.9)] cursor-pointer select-none active:scale-95 transition-all ${
+                    className={`w-7 h-7 flex items-center justify-center border-2 border-stone-900 rounded-lg shadow-[1px_1px_0px_0px_rgba(0,0,0,0.18)] cursor-pointer select-none active:scale-95 transition-all ${
                       isChapterFullySelected
                         ? 'bg-[#FEC2C7] text-stone-900'
                         : 'bg-[#BBF7D0] text-stone-900'

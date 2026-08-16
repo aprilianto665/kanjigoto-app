@@ -15,17 +15,12 @@ export const FlashcardTile: React.FC<FlashcardTileProps> = ({
   return (
     <div
       onClick={onFlip}
-      className="relative w-full max-w-xs mx-auto aspect-[3/4] cursor-pointer select-none transition-transform duration-200 active:scale-[0.98] drop-shadow-md"
+      className="relative w-full max-w-xs mx-auto aspect-[3/4] cursor-pointer select-none transition-transform duration-200 active:scale-[0.98]"
     >
-      {/* Outer Wobbly Border Box */}
-      <div
-        className="w-full h-full bg-[#FCFCFD] border-[3.5px] border-stone-900 p-3 flex flex-col items-center justify-between"
-        style={{
-          borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-        }}
-      >
+      {/* Outer Card with solid border & soft shadow */}
+      <div className="w-full h-full bg-white border-2 border-stone-900 rounded-3xl p-3 flex flex-col items-center justify-between shadow-[2px_4px_0px_0px_rgba(0,0,0,0.18)]">
         {/* Inner Dashed Border Container */}
-        <div className="w-full h-full border-2 border-dashed border-stone-400/80 rounded-2xl flex flex-col items-center justify-between p-6 relative overflow-hidden bg-white/60">
+        <div className="w-full h-full border-2 border-dashed border-stone-300 rounded-2xl flex flex-col items-center justify-between p-6 relative overflow-hidden bg-white">
           {!isFlipped ? (
             /* FRONT: Big Kanji Character */
             <>
