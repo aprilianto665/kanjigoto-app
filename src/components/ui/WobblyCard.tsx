@@ -19,10 +19,13 @@ export const WobblyCard: React.FC<WobblyCardProps> = ({
 
   return (
     <div className={`relative ${className}`}>
-      {/* Unified single-path folder backplate: bold 3.5px border */}
+      {/* Unified single-path folder backplate: bold 3.5px border with doodle drop-shadow */}
       {backplateColor && (
         <svg
           className="absolute -top-[18px] left-1.5 w-full h-[calc(100%+10px)] pointer-events-none z-0 overflow-visible"
+          style={{
+            filter: 'drop-shadow(2.5px 2.5px 0px rgba(0, 0, 0, 0.18))',
+          }}
           viewBox="0 0 360 82"
           preserveAspectRatio="none"
           fill="none"
@@ -39,17 +42,16 @@ export const WobblyCard: React.FC<WobblyCardProps> = ({
         </svg>
       )}
 
-      {/* Main card body with bold 3.5px border */}
+      {/* Main card body with clean rounded border and inner dashed border (no shadow) */}
       <div
         onClick={isClickable ? onClick : undefined}
-        className={`relative z-10 bg-[#F4F4F8] border-[3.5px] border-stone-900 transition-transform ${
+        className={`relative z-10 bg-white p-[3px] border-2 border-stone-900 rounded-2xl transition-transform ${
           isClickable ? 'cursor-pointer active:scale-[0.98]' : ''
-        } ${disabled ? 'opacity-55 cursor-not-allowed bg-[#EDEDF2]' : ''}`}
-        style={{
-          borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-        }}
+        } ${disabled ? 'opacity-55 cursor-not-allowed bg-stone-100' : ''}`}
       >
-        {children}
+        <div className="w-full h-full border-2 border-dashed border-stone-300 rounded-[10px]">
+          {children}
+        </div>
       </div>
     </div>
   );

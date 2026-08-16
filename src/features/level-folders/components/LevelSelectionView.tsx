@@ -34,7 +34,7 @@ export const LevelSelectionView: React.FC<LevelSelectionViewProps> = ({
       </LogoHeader>
 
       {/* Level Folder List: scrollable without scrollbar */}
-      <main className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar min-h-0 space-y-5 max-w-sm mx-auto w-full pt-4 pb-4 px-2">
+      <main className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar min-h-0 space-y-6 max-w-sm mx-auto w-full pt-6 pb-6 px-2">
         {MARUGOTO_LEVELS.map((level) => (
           <FolderCard
             key={level.id}
