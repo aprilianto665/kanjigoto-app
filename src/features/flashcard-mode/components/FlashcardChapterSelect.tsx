@@ -114,20 +114,26 @@ export const FlashcardChapterSelect: React.FC<FlashcardChapterSelectProps> = ({
                 </div>
 
                 {/* Preview of Kanji in Chapter */}
-                <div className="flex flex-wrap items-center gap-3 pt-1">
-                  {group.items.map((item) => {
+                <div className="flex flex-wrap items-center gap-y-1 pt-1">
+                  {group.items.map((item, idx) => {
                     const isSelected = selectedKanjiIds.has(item.id);
                     return (
-                      <span
-                        key={item.id}
-                        className={`font-kanji text-2xl font-medium tracking-normal select-none transition-colors ${
-                          isSelected
-                            ? 'text-stone-900 font-bold'
-                            : 'text-stone-800'
-                        }`}
-                      >
-                        {item.kanji}
-                      </span>
+                      <React.Fragment key={item.id}>
+                        <span
+                          className={`font-kanji text-2xl font-medium tracking-normal select-none transition-colors ${
+                            isSelected
+                              ? 'text-stone-900 font-bold'
+                              : 'text-stone-800'
+                          }`}
+                        >
+                          {item.kanji}
+                        </span>
+                        {idx < group.items.length - 1 && (
+                          <span className="font-kanji text-xl font-medium text-stone-400 select-none mr-2">
+                            ,
+                          </span>
+                        )}
+                      </React.Fragment>
                     );
                   })}
                 </div>
