@@ -3,9 +3,15 @@ import type { KanjiItem } from '../../../types';
 
 interface KanjiTile2ColProps {
   item: KanjiItem;
+  isActive?: boolean;
+  onClick?: () => void;
 }
 
-export const KanjiTile2Col: React.FC<KanjiTile2ColProps> = ({ item }) => {
+export const KanjiTile2Col: React.FC<KanjiTile2ColProps> = ({
+  item,
+  isActive = false,
+  onClick,
+}) => {
   const furiganaText = item.furigana.join('・');
   const romajiText = item.romaji.join(', ');
 
@@ -22,7 +28,12 @@ export const KanjiTile2Col: React.FC<KanjiTile2ColProps> = ({ item }) => {
 
   return (
     <div
-      className="w-full bg-white hover:bg-[#F0EFF4] active:bg-[#E5E4EB] border-2 border-stone-900 rounded-2xl p-[3px] cursor-pointer transition-colors duration-150"
+      onClick={onClick}
+      className={`w-full border-2 border-stone-900 rounded-2xl p-[3px] cursor-pointer transition-colors duration-150 select-none ${
+        isActive
+          ? 'bg-[#F0EFF4]'
+          : 'bg-white hover:bg-[#F0EFF4] active:bg-[#E5E4EB]'
+      }`}
       style={{
         boxShadow: '2.5px 2.5px 0px 0px rgba(0, 0, 0, 0.22)',
       }}
