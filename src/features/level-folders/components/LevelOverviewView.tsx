@@ -145,14 +145,22 @@ export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) =
 
             {/* 2-Column Grid of Kanji */}
             <div className="grid grid-cols-2 gap-2.5">
-              {group.items.map((item) => (
-                <KanjiTile2Col
-                  key={item.id}
-                  item={item}
-                  isActive={playingKanjiId === item.id}
-                  onClick={() => handlePlayTTS(item.id, item.kanji)}
-                />
-              ))}
+              {group.items.map((item) => {
+                const spokenText =
+                  item.furigana
+                    .map((f) => f.replace(/[～~]/g, '').trim())
+                    .filter(Boolean)
+                    .join('、') || item.kanji;
+
+                return (
+                  <KanjiTile2Col
+                    key={item.id}
+                    item={item}
+                    isActive={playingKanjiId === item.id}
+                    onClick={() => handlePlayTTS(item.id, spokenText)}
+                  />
+                );
+              })}
             </div>
           </section>
         ))}
