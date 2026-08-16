@@ -41,6 +41,10 @@ export const MARUGOTO_LEVELS: LevelInfo[] = [
   },
 ];
 
+export function getAllKanji(): KanjiItem[] {
+  return [...MARUGOTO_A1, ...MARUGOTO_A2_1, ...MARUGOTO_A2_2];
+}
+
 export function getKanjiByLevel(levelId: LevelId): KanjiItem[] {
   switch (levelId) {
     case 'a1':
