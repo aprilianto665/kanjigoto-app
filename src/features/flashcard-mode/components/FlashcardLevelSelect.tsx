@@ -63,11 +63,8 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
                     {level.title}
                   </h2>
 
-                  {/* Folder Icon outline with level accent color */}
-                  <FolderIcon
-                    className="w-6 h-6 stroke-2"
-                    style={{ color: level.accentColor }}
-                  />
+                  {/* Folder Icon outline */}
+                  <FolderIcon className="w-6 h-6 text-stone-400 stroke-2" />
                 </div>
 
                 {/* Bottom Row: Kanji count and Selected count */}
@@ -79,7 +76,7 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
                         <span>{level.kanjiCount} Kanji</span>
                       </div>
                       <span className="text-stone-300 font-normal">|</span>
-                      <span className={selectedCount > 0 ? 'text-blue-600' : 'text-stone-500'}>
+                      <span>
                         {selectedCount} Selected
                       </span>
                     </>
