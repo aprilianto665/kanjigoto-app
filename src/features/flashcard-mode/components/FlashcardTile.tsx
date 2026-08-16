@@ -68,7 +68,7 @@ export const FlashcardTile: React.FC<FlashcardTileProps> = ({
                 <span className="font-kanji text-2xl font-bold text-stone-700">
                   {item.kanji}
                 </span>
-                <span className="text-xs font-handwritten font-bold px-2 py-0.5 bg-amber-100 border border-amber-300 rounded-md text-amber-900">
+                <span className="text-xs font-handwritten font-bold text-stone-400">
                   Ch. {item.chapter}
                 </span>
               </div>
