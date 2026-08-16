@@ -7,7 +7,7 @@ export const MARUGOTO_LEVELS: LevelInfo[] = [
   {
     id: 'a1',
     title: 'A1 (Katsudoo)',
-    subtitle: '35 Kanji Inside',
+    subtitle: `${MARUGOTO_A1.length} Kanji Inside`,
     kanjiCount: MARUGOTO_A1.length,
     available: true,
     accentColor: '#92B7FE', // pastel blue
@@ -16,7 +16,7 @@ export const MARUGOTO_LEVELS: LevelInfo[] = [
   {
     id: 'a2-1',
     title: 'A2.1 (Rikai)',
-    subtitle: '80 Kanji Inside',
+    subtitle: `${MARUGOTO_A2_1.length} Kanji Inside`,
     kanjiCount: MARUGOTO_A2_1.length,
     available: true,
     accentColor: '#D2B4FE', // pastel purple
@@ -25,7 +25,7 @@ export const MARUGOTO_LEVELS: LevelInfo[] = [
   {
     id: 'a2-2',
     title: 'A2.2 (Rikai)',
-    subtitle: '120 Kanji Inside',
+    subtitle: `${MARUGOTO_A2_2.length} Kanji Inside`,
     kanjiCount: MARUGOTO_A2_2.length,
     available: true,
     accentColor: '#FEC2C7', // pastel pink
