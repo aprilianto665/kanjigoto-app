@@ -1,6 +1,7 @@
 import React from 'react';
 import type { LevelInfo } from '../../../types';
 import { MARUGOTO_LEVELS } from '../../../data';
+import { LogoHeader } from '../../../components/ui';
 import { FolderCard } from './FolderCard';
 
 interface LevelSelectionViewProps {
@@ -11,17 +12,9 @@ export const LevelSelectionView: React.FC<LevelSelectionViewProps> = ({
   onSelectLevel,
 }) => {
   return (
-    <div className="flex-1 flex flex-col min-h-0 overflow-hidden px-5 pt-6 pb-2">
+    <div className="flex-1 flex flex-col min-h-0 overflow-hidden px-5 pt-6 pb-2 max-w-sm mx-auto w-full">
       {/* Header section with Logo and Playful Doodle Tagline */}
-      <header className="shrink-0 flex flex-col items-center text-center mb-4">
-        <div className="w-28 h-28 relative flex items-center justify-center mb-1">
-          <img
-            src="/kanjigoto_icon.png"
-            alt="KanjiGoto Logo"
-            className="w-full h-full object-contain drop-shadow-sm scale-115"
-          />
-        </div>
-
+      <LogoHeader>
         <div className="flex flex-col items-center max-w-[320px]">
           <p className="font-handwritten font-bold text-base text-stone-600 tracking-wide flex items-center gap-1.5">
             <span className="text-stone-400 text-xs">✦</span>
@@ -30,7 +23,7 @@ export const LevelSelectionView: React.FC<LevelSelectionViewProps> = ({
           </p>
 
           <h1 className="font-header font-extrabold text-xl text-stone-900 tracking-tight mt-1 flex items-center justify-center flex-wrap gap-1.5">
-            <span className="inline-block px-2.5 py-0.5 bg-[#FEF08A] border-2 border-stone-900 rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,0.22)] text-stone-900">
+            <span className="inline-block px-2.5 py-0.5 bg-[#FEF08A] border-2 border-stone-900 rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)] text-stone-900">
               Marugoto Kanji
             </span>
             <span className="font-handwritten font-bold text-lg text-stone-700">
@@ -38,7 +31,7 @@ export const LevelSelectionView: React.FC<LevelSelectionViewProps> = ({
             </span>
           </h1>
         </div>
-      </header>
+      </LogoHeader>
 
       {/* Level Folder List: scrollable without scrollbar */}
       <main className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar min-h-0 space-y-5 max-w-sm mx-auto w-full pt-4 pb-4 px-2">

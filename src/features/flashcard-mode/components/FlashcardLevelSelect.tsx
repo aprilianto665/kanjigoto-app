@@ -8,6 +8,7 @@ import {
 } from '@heroicons/react/24/outline';
 import type { LevelInfo } from '../../../types';
 import { MARUGOTO_LEVELS, getKanjiByLevel } from '../../../data';
+import { LogoHeader } from '../../../components/ui';
 
 interface FlashcardLevelSelectProps {
   selectedKanjiIds: Set<string>;
@@ -32,20 +33,12 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
 
   return (
     <div className="flex-1 flex flex-col min-h-0 overflow-hidden px-5 pt-6 pb-2 max-w-sm mx-auto w-full">
-      {/* Header section with Logo and Title */}
-      <header className="shrink-0 flex flex-col items-center text-center mb-4">
-        <div className="w-24 h-24 relative flex items-center justify-center mb-1">
-          <img
-            src="/kanjigoto_icon.png"
-            alt="KanjiGoto Logo"
-            className="w-full h-full object-contain drop-shadow-sm"
-          />
-        </div>
-
+      {/* Reusable LogoHeader with Kanji Selection Title */}
+      <LogoHeader>
         <h1 className="font-header font-extrabold text-2xl text-stone-900 tracking-tight">
           Kanji Selection
         </h1>
-      </header>
+      </LogoHeader>
 
       {/* Level Folder List: simple solid border outside, dashed inside, soft shadow */}
       <main className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar min-h-0 space-y-3.5 pt-1 pb-3 px-1">

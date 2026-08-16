@@ -16,7 +16,7 @@ export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) =
   );
 
   return (
-    <div className="flex-1 flex flex-col min-h-0 overflow-hidden px-4 pt-6 pb-2">
+    <div className="flex-1 flex flex-col min-h-0 overflow-hidden px-5 pt-6 pb-2 max-w-sm mx-auto w-full">
       {/* Header with Level Title (fixed at top) */}
       <header className="shrink-0 text-center mb-3">
         <h1 className="font-header font-bold text-2xl text-stone-900 tracking-tight">
