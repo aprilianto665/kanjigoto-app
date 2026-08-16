@@ -108,10 +108,19 @@ export default function App() {
     setActiveTab('kanji');
   };
 
-  // Determine if bottom bar should be in 'session' mode (with Back button) or 'home' mode (with Tabs)
-  const isSessionMode =
-    (activeTab === 'kanji' && selectedOverviewLevel !== null) ||
-    (activeTab === 'flashcard' && flashcardStep !== 'level-select');
+  // Determine BottomNavBar mode dynamically:
+  // - 'overview' in LevelOverviewView: Back, Cards, Drill
+  // - 'session' in Flashcard sub-pages: Back, Kanji (Home), Drill
+  // - 'home' in root level lists: Folders, Cards, Drill tabs
+  const getNavMode = (): 'home' | 'session' | 'overview' => {
+    if (activeTab === 'kanji' && selectedOverviewLevel !== null) {
+      return 'overview';
+    }
+    if (activeTab === 'flashcard' && flashcardStep !== 'level-select') {
+      return 'session';
+    }
+    return 'home';
+  };
 
   return (
     <AppShell>
@@ -171,7 +180,7 @@ export default function App() {
 
       {/* Persistent Bottom Action Bar */}
       <BottomNavBar
-        mode={isSessionMode ? 'session' : 'home'}
+        mode={getNavMode()}
         activeTab={activeTab}
         onTabChange={(tab) => {
           setActiveTab(tab);
@@ -184,8 +193,13 @@ export default function App() {
         onBack={handleBack}
         onGoHome={handleGoHome}
         onStartFlashcard={() => {
+          if (activeTab === 'kanji' && selectedOverviewLevel) {
+            setSelectedFlashcardLevel(selectedOverviewLevel);
+            setFlashcardStep('chapter-select');
+          } else {
+            setFlashcardStep('level-select');
+          }
           setActiveTab('flashcard');
-          setFlashcardStep('level-select');
         }}
         onStartDrill={() => {
           setActiveTab('drill');

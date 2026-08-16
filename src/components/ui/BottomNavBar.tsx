@@ -29,11 +29,51 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
   onStartFlashcard,
   onStartDrill,
 }) => {
-  if (mode === 'session' || mode === 'overview') {
+  // Mode Overview (when inside LevelOverviewView in Folders tab): Back, Cards, Drill
+  if (mode === 'overview') {
     return (
       <div className="shrink-0 w-full px-4 py-3 bg-transparent">
         <div className="flex items-center justify-between gap-2.5 max-w-sm mx-auto">
-          {/* Back button (Active/Primary in session mode) */}
+          {/* Back button */}
+          <WobblyButton
+            onClick={onBack}
+            variant="primary"
+            className="flex-1"
+            icon={<ArrowLeftIcon className="w-4 h-4 stroke-2" />}
+          >
+            Back
+          </WobblyButton>
+
+          {/* Cards button */}
+          <WobblyButton
+            onClick={onStartFlashcard}
+            variant="secondary"
+            className="flex-1"
+            icon={<Square2StackIcon className="w-4 h-4 stroke-2" />}
+          >
+            Cards
+          </WobblyButton>
+
+          {/* Drill button */}
+          <WobblyButton
+            onClick={onStartDrill}
+            variant="secondary"
+            className="flex-1"
+            icon={<AcademicCapIcon className="w-4 h-4 stroke-2" />}
+          >
+            Drill
+          </WobblyButton>
+        </div>
+      </div>
+    );
+  }
+
+  // Mode Session (when inside Flashcard Chapter Select or Flashcard Practice): Back, Kanji (Home), Drill
+  if (mode === 'session') {
+    return (
+      <div className="shrink-0 w-full px-4 py-3 bg-transparent">
+        <div className="flex items-center justify-between gap-2.5 max-w-sm mx-auto">
+          {/* Back button */}
           <WobblyButton
             onClick={onBack}
             variant="primary"
@@ -67,6 +107,7 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
     );
   }
 
+  // Mode Home (Tabs on root screens): Folders, Cards, Drill
   return (
     <div className="shrink-0 w-full px-4 py-3 bg-transparent">
       <div className="flex items-center justify-between gap-2.5 max-w-sm mx-auto">
