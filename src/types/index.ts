@@ -6,3 +6,24 @@ export interface KanjiItem {
   chapter: number;     // Topik/Bab kemunculan Kanji (kolom 'か')
   topic?: string;      // Nama Topik opsional jika relevan
 }
+
+export type LevelId = 'a1' | 'a2-1' | 'a2-2' | 'b1';
+
+export interface LevelInfo {
+  id: LevelId;
+  title: string;
+  subtitle: string;
+  kanjiCount: number;
+  available: boolean;
+  accentColor: string; // e.g. '#C7D9FE' for top tab backplate
+  badgeBg?: string;
+}
+
+export interface ChapterGroup {
+  chapter: number;
+  title: string;
+  badgeBg: string;
+  items: KanjiItem[];
+}
+
+export type NavTab = 'kanji' | 'flashcard' | 'drill';
