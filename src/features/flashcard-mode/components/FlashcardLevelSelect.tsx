@@ -100,35 +100,43 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
       <div className="shrink-0 flex flex-col gap-2.5 pt-2 pb-1">
         {/* Selection Status Row */}
         <div className="flex items-center justify-between gap-3">
-          {/* Green Counter Pill */}
-          <div className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-[#BBF7D0] border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)]">
-            <Bars3BottomLeftIcon className="w-4 h-4 text-stone-900 stroke-2" />
-            <span className="font-handwritten text-base font-bold text-stone-900 tracking-wide">
-              {totalSelectedCount} Kanji Selected
-            </span>
+          {/* Green Counter Pill with inner dashed border */}
+          <div className="flex-1 relative p-[3px] bg-[#BBF7D0] border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)]">
+            <div className="w-full h-full flex items-center justify-center gap-1.5 px-3 py-1.5 border-2 border-dashed border-emerald-400 rounded-[7px]">
+              <Bars3BottomLeftIcon className="w-4 h-4 text-stone-900 stroke-2" />
+              <span className="font-handwritten text-base font-bold text-stone-900 tracking-wide">
+                {totalSelectedCount} Kanji Selected
+              </span>
+            </div>
           </div>
 
-          {/* Red Clear Button */}
+          {/* Red Clear Button with inner dashed border */}
           <button
             type="button"
             onClick={onClearSelection}
             disabled={totalSelectedCount === 0}
-            className={`inline-flex items-center justify-center gap-1 px-3.5 py-1.5 bg-[#FEC2C7] border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)] font-handwritten text-base font-bold text-red-900 cursor-pointer transition-all active:scale-95 ${
-              totalSelectedCount === 0 ? 'opacity-40 cursor-not-allowed' : ''
+            className={`relative p-[3px] bg-[#FEC2C7] border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)] cursor-pointer transition-all active:scale-95 ${
+              totalSelectedCount === 0 ? 'opacity-40 cursor-not-allowed shadow-none' : ''
             }`}
           >
-            <XMarkIcon className="w-4 h-4 text-red-900 stroke-2" />
-            <span>Clear</span>
+            <div className="w-full h-full flex items-center justify-center gap-1 px-3 py-1.5 border-2 border-dashed border-[#F472B6] rounded-[7px] text-red-900 font-handwritten text-base font-bold">
+              <XMarkIcon className="w-4 h-4 text-red-900 stroke-2" />
+              <span>Clear</span>
+            </div>
           </button>
         </div>
 
-        {/* Big Blue START Button */}
+        {/* Big Blue START Button with inner dashed border */}
         <button
           type="button"
           onClick={onStartFlashcard}
-          className="w-full py-3 bg-[#8BB4F8] border-2 border-stone-900 rounded-2xl shadow-[3px_3px_0px_0px_rgba(0,0,0,0.22)] font-header font-black text-xl text-stone-900 tracking-wider cursor-pointer transition-all active:scale-[0.98] select-none uppercase"
+          className="w-full relative p-[3px] bg-[#8BB4F8] border-2 border-stone-900 rounded-2xl shadow-[3px_3px_0px_0px_rgba(0,0,0,0.22)] cursor-pointer transition-all active:scale-[0.98] select-none"
         >
-          START
+          <div className="w-full h-full flex items-center justify-center py-2.5 px-4 border-2 border-dashed border-[#5C8CE0] rounded-[10px]">
+            <span className="font-header font-black text-xl text-stone-900 tracking-wider uppercase">
+              START
+            </span>
+          </div>
         </button>
       </div>
     </div>
