@@ -44,12 +44,6 @@ export const FlashcardTile: React.FC<FlashcardTileProps> = ({
           {!isFlipped ? (
             /* FRONT: Adaptive Sized Kanji Character */
             <>
-              <div className="w-full flex justify-end">
-                <span className="text-xs font-handwritten font-bold text-stone-400">
-                  Ch. {item.chapter}
-                </span>
-              </div>
-
               <div className="my-auto w-full flex flex-col items-center justify-center px-2">
                 <span
                   className={`font-kanji ${getKanjiFontSizeClass(
