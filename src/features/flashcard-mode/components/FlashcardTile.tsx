@@ -35,7 +35,7 @@ export const FlashcardTile: React.FC<FlashcardTileProps> = ({
   return (
     <div
       onClick={onFlip}
-      className="relative w-full max-w-[280px] max-h-[45vh] aspect-[3/4] mx-auto cursor-pointer select-none transition-transform duration-200 active:scale-[0.98]"
+      className="relative w-full max-w-[280px] max-h-[45dvh] max-h-[45vh] aspect-[3/4] mx-auto cursor-pointer select-none transition-transform duration-200 active:scale-[0.98]"
     >
       {/* Outer Card with solid border & soft shadow */}
       <div className="w-full h-full bg-white border-2 border-stone-900 rounded-3xl p-3 flex flex-col items-center justify-between shadow-[2px_4px_0px_0px_rgba(0,0,0,0.18)]">
