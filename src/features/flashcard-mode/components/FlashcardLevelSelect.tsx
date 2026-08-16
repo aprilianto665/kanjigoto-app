@@ -100,14 +100,12 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
       <div className="shrink-0 flex flex-col gap-2.5 pt-2 pb-1">
         {/* Selection Status Row */}
         <div className="flex items-center justify-between gap-3">
-          {/* Green Counter Pill with inner dashed border */}
-          <div className="flex-1 relative p-[3px] bg-[#BBF7D0] border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)]">
-            <div className="w-full h-full flex items-center justify-center gap-1.5 px-3 py-1.5 border-2 border-dashed border-emerald-400 rounded-[7px]">
-              <Bars3BottomLeftIcon className="w-4 h-4 text-stone-900 stroke-2" />
-              <span className="font-handwritten text-base font-bold text-stone-900 tracking-wide">
-                {totalSelectedCount} Kanji Selected
-              </span>
-            </div>
+          {/* Green Counter Pill */}
+          <div className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#BBF7D0] border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)]">
+            <Bars3BottomLeftIcon className="w-4 h-4 text-stone-900 stroke-2" />
+            <span className="font-handwritten text-base font-bold text-stone-900 tracking-wide">
+              {totalSelectedCount} Kanji Selected
+            </span>
           </div>
 
           {/* Red Clear Button with inner dashed border */}
