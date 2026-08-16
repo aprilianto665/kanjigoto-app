@@ -24,9 +24,9 @@ export const WobblyButton: React.FC<WobblyButtonProps> = ({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`relative inline-flex items-center justify-center p-[3px] border-2 border-stone-900 rounded-2xl transition-all cursor-pointer select-none active:scale-[0.97] ${
+      className={`relative inline-flex items-center justify-center p-[3px] border-2 border-stone-900 rounded-2xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)] transition-all cursor-pointer select-none active:scale-[0.97] ${
         isActive ? 'bg-[#8BB4F8]' : 'bg-white'
-      } ${disabled ? 'opacity-40 cursor-not-allowed' : ''} ${className}`}
+      } ${disabled ? 'opacity-40 cursor-not-allowed shadow-none' : ''} ${className}`}
     >
       <div
         className={`w-full h-full flex items-center justify-center gap-1.5 px-3 py-1.5 border-2 border-dashed rounded-[10px] ${
