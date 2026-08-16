@@ -69,17 +69,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
       </div>
 
       {/* Control Buttons Group */}
-      <div className="shrink-0 flex flex-col gap-2.5 w-full max-w-xs mx-auto mt-4 mb-2">
-        {/* Shuffle Button (Full width with dashed border styling) */}
-        <WobblyButton
-          onClick={shuffleQueue}
-          variant="secondary"
-          className="w-full"
-          icon={<ArrowsRightLeftIcon className="w-5 h-5 text-stone-800 stroke-2" />}
-        >
-          Shuffle
-        </WobblyButton>
-
+      <div className="shrink-0 flex flex-col gap-2.5 w-full max-w-xs mx-auto mt-2 mb-1">
         {/* Prev and Next Buttons */}
         <div className="flex items-center gap-3 w-full">
           <WobblyButton
@@ -102,6 +92,16 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
             Next
           </WobblyButton>
         </div>
+
+        {/* Shuffle Button (Full width with dashed border styling) */}
+        <WobblyButton
+          onClick={shuffleQueue}
+          variant="secondary"
+          className="w-full"
+          icon={<ArrowsRightLeftIcon className="w-5 h-5 text-stone-800 stroke-2" />}
+        >
+          Shuffle
+        </WobblyButton>
       </div>
     </div>
   );
