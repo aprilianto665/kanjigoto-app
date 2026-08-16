@@ -34,9 +34,7 @@
 * **Mode Latihan 2: Randomized Flashcard Mode:**
   * **Tampilan Kartu Kanji Acak:** Menampilkan kartu Kanji acak satu per satu dari level yang dipilih.
   * **Koin/Kartu Flip (Reveal On-Click):** Klik/ketuk kartu untuk membalik dan menampilkan Furigana & Romaji.
-  * **Visual Toggle Control (Hide/Show):** Opsi *toggle* dinamis untuk menyembunyikan/menampilkan komponen (*Toggle Hide/Show Furigana* & *Toggle Hide/Show Romaji*).
   * **Antrean Unik (No-Repeat Stack):** Kartu yang sudah dibuka tidak akan muncul kembali di sesi tersebut.
-  * **Layar Penyelesaian (Completion Screen):** Menampilkan **ucapan selamat (*congratulations*)** beserta tombol **Main Lagi** dan **Kembali ke Folder**.
 
 * **Settings & Persistence (Client-Side):**
   * Menyimpan folder level terakhir yang dibuka, preferensi mode latihan, dan opsi *toggle hide* menggunakan `localStorage`.
