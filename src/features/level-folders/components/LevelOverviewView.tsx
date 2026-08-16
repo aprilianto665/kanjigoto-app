@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import type { LevelInfo } from '../../../types';
 import { getKanjiByLevel, groupKanjiByChapter } from '../../../data';
-import { ChapterBadge } from '../../../components/ui/ChapterBadge';
+import { ChapterBadge, Toast } from '../../../components/ui';
 import { KanjiTile2Col } from './KanjiTile2Col';
 
 interface LevelOverviewViewProps {
@@ -9,14 +9,120 @@ interface LevelOverviewViewProps {
 }
 
 export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) => {
+  const [playingKanjiId, setPlayingKanjiId] = useState<string | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
   const kanjiList = useMemo(() => getKanjiByLevel(level.id), [level.id]);
   const chapterGroups = useMemo(
     () => groupKanjiByChapter(kanjiList, level.id),
     [kanjiList, level.id]
   );
 
+  // Preload voices and handle cleanup on unmount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.getVoices();
+      const handleVoicesChanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+      window.speechSynthesis.addEventListener('voiceschanged', handleVoicesChanged);
+      return () => {
+        window.speechSynthesis.removeEventListener('voiceschanged', handleVoicesChanged);
+        window.speechSynthesis.cancel();
+      };
+    }
+  }, []);
+
+  // Helper to select the best available Japanese female voice
+  const getJapaneseFemaleVoice = useCallback((): SpeechSynthesisVoice | null => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    const jaVoices = voices.filter(
+      (v) => v.lang === 'ja-JP' || v.lang === 'ja_JP' || v.lang.startsWith('ja')
+    );
+
+    if (jaVoices.length === 0) return null;
+
+    // 1. Check for preferred known Japanese female voice names
+    const preferredFemaleNames = [
+      'kyoko',
+      'nanami',
+      'ayumi',
+      'haruka',
+      'sayaka',
+      'mayu',
+      'hikari',
+      'google 日本語',
+      'google japanese',
+    ];
+
+    const femaleVoice = jaVoices.find((v) => {
+      const name = v.name.toLowerCase();
+      return (
+        name.includes('female') ||
+        preferredFemaleNames.some((n) => name.includes(n))
+      );
+    });
+
+    if (femaleVoice) return femaleVoice;
+
+    // 2. Filter out known male voice identifiers
+    const maleNames = ['male', 'otoya', 'ichiro', 'keita', 'daichi', 'naoki'];
+    const nonMaleVoice = jaVoices.find((v) => {
+      const name = v.name.toLowerCase();
+      return !maleNames.some((m) => name.includes(m));
+    });
+
+    return nonMaleVoice || jaVoices[0] || null;
+  }, []);
+
+  const handlePlayTTS = useCallback(
+    (kanjiId: string, text: string) => {
+      // 1. Fallback if browser doesn't support Web Speech API
+      if (typeof window === 'undefined' || !('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
+        setToastMessage('Text-to-speech is not supported in this browser.');
+        return;
+      }
+
+      // 2. Stop any ongoing speech
+      window.speechSynthesis.cancel();
+
+      // 3. Toggle off if clicking the currently active/playing kanji card
+      if (playingKanjiId === kanjiId) {
+        setPlayingKanjiId(null);
+        return;
+      }
+
+      // 4. Create and configure speech utterance
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'ja-JP';
+      utterance.volume = 1; // Set volume to maximum (1.0)
+      utterance.rate = 0.9;
+      utterance.pitch = 1.0;
+
+      // Assign female voice if found
+      const femaleVoice = getJapaneseFemaleVoice();
+      if (femaleVoice) {
+        utterance.voice = femaleVoice;
+      }
+
+      utterance.onend = () => {
+        setPlayingKanjiId(null);
+      };
+
+      utterance.onerror = () => {
+        setPlayingKanjiId(null);
+      };
+
+      // 5. Play speech and set active state
+      window.speechSynthesis.speak(utterance);
+      setPlayingKanjiId(kanjiId);
+    },
+    [playingKanjiId, getJapaneseFemaleVoice]
+  );
+
   return (
-    <div className="flex-1 flex flex-col min-h-0 overflow-hidden px-5 pt-6 pb-2 max-w-sm mx-auto w-full">
+    <div className="relative flex-1 flex flex-col min-h-0 overflow-hidden px-5 pt-6 pb-2 max-w-sm mx-auto w-full">
       {/* Header with Level Title (fixed at top) */}
       <header className="shrink-0 text-center mb-3">
         <h1 className="font-header font-bold text-2xl text-stone-900 tracking-tight">
@@ -41,13 +147,34 @@ export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) =
 
             {/* 2-Column Grid of Kanji */}
             <div className="grid grid-cols-2 gap-2.5">
-              {group.items.map((item) => (
-                <KanjiTile2Col key={item.id} item={item} />
-              ))}
+              {group.items.map((item) => {
+                const spokenText =
+                  item.furigana
+                    .map((f) => f.replace(/[～~]/g, '').trim())
+                    .filter(Boolean)
+                    .join('、') || item.kanji;
+
+                return (
+                  <KanjiTile2Col
+                    key={item.id}
+                    item={item}
+                    isActive={playingKanjiId === item.id}
+                    onClick={() => handlePlayTTS(item.id, spokenText)}
+                  />
+                );
+              })}
             </div>
           </section>
         ))}
       </main>
+
+      {/* Fallback Toast Notification */}
+      <Toast
+        message={toastMessage || ''}
+        isVisible={!!toastMessage}
+        onClose={() => setToastMessage(null)}
+      />
     </div>
   );
 };
+
