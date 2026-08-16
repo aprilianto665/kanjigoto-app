@@ -193,12 +193,9 @@ export default function App() {
         onBack={handleBack}
         onGoHome={handleGoHome}
         onStartFlashcard={() => {
-          if (activeTab === 'kanji' && selectedOverviewLevel) {
-            setSelectedFlashcardLevel(selectedOverviewLevel);
-            setFlashcardStep('chapter-select');
-          } else {
-            setFlashcardStep('level-select');
-          }
+          setSelectedOverviewLevel(null);
+          setSelectedFlashcardLevel(null);
+          setFlashcardStep('level-select');
           setActiveTab('flashcard');
         }}
         onStartDrill={() => {
