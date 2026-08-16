@@ -128,7 +128,12 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
         <button
           type="button"
           onClick={onStartFlashcard}
-          className="w-full relative p-[3px] bg-[#8BB4F8] border-2 border-stone-900 rounded-2xl shadow-[3px_3px_0px_0px_rgba(0,0,0,0.22)] cursor-pointer transition-all active:scale-[0.98] select-none"
+          disabled={totalSelectedCount === 0}
+          className={`w-full relative p-[3px] bg-[#8BB4F8] border-2 border-stone-900 rounded-2xl shadow-[3px_3px_0px_0px_rgba(0,0,0,0.22)] transition-all select-none ${
+            totalSelectedCount === 0
+              ? 'opacity-40 cursor-not-allowed shadow-none'
+              : 'cursor-pointer active:scale-[0.98]'
+          }`}
         >
           <div className="w-full h-full flex items-center justify-center py-2.5 px-4 border-2 border-dashed border-[#5C8CE0] rounded-[10px]">
             <span className="font-header font-black text-xl text-stone-900 tracking-wider uppercase">

@@ -76,13 +76,7 @@ export default function App() {
   };
 
   const handleStartFlashcardSession = () => {
-    // If no kanji selected, automatically select all in current level or A1
-    if (selectedKanjiIds.size === 0) {
-      const defaultList = selectedFlashcardLevel
-        ? getKanjiByLevel(selectedFlashcardLevel.id)
-        : getKanjiByLevel('a1');
-      setSelectedKanjiIds(new Set(defaultList.map((k) => k.id)));
-    }
+    if (selectedKanjiIds.size === 0) return;
     setFlashcardStep('session');
     setActiveTab('flashcard');
   };
