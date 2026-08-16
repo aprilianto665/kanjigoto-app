@@ -96,7 +96,9 @@ export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) =
       // 4. Create and configure speech utterance
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'ja-JP';
+      utterance.volume = 1; // Set volume to maximum (1.0)
       utterance.rate = 0.9;
+      utterance.pitch = 1.0;
 
       // Assign female voice if found
       const femaleVoice = getJapaneseFemaleVoice();
