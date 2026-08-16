@@ -18,13 +18,62 @@ export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) =
     [kanjiList, level.id]
   );
 
-  // Stop any active speech synthesis when navigating away / unmounting
+  // Preload voices and handle cleanup on unmount
   useEffect(() => {
-    return () => {
-      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.getVoices();
+      const handleVoicesChanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+      window.speechSynthesis.addEventListener('voiceschanged', handleVoicesChanged);
+      return () => {
+        window.speechSynthesis.removeEventListener('voiceschanged', handleVoicesChanged);
         window.speechSynthesis.cancel();
-      }
-    };
+      };
+    }
+  }, []);
+
+  // Helper to select the best available Japanese female voice
+  const getJapaneseFemaleVoice = useCallback((): SpeechSynthesisVoice | null => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    const jaVoices = voices.filter(
+      (v) => v.lang === 'ja-JP' || v.lang === 'ja_JP' || v.lang.startsWith('ja')
+    );
+
+    if (jaVoices.length === 0) return null;
+
+    // 1. Check for preferred known Japanese female voice names
+    const preferredFemaleNames = [
+      'kyoko',
+      'nanami',
+      'ayumi',
+      'haruka',
+      'sayaka',
+      'mayu',
+      'hikari',
+      'google 日本語',
+      'google japanese',
+    ];
+
+    const femaleVoice = jaVoices.find((v) => {
+      const name = v.name.toLowerCase();
+      return (
+        name.includes('female') ||
+        preferredFemaleNames.some((n) => name.includes(n))
+      );
+    });
+
+    if (femaleVoice) return femaleVoice;
+
+    // 2. Filter out known male voice identifiers
+    const maleNames = ['male', 'otoya', 'ichiro', 'keita', 'daichi', 'naoki'];
+    const nonMaleVoice = jaVoices.find((v) => {
+      const name = v.name.toLowerCase();
+      return !maleNames.some((m) => name.includes(m));
+    });
+
+    return nonMaleVoice || jaVoices[0] || null;
   }, []);
 
   const handlePlayTTS = useCallback(
@@ -49,6 +98,12 @@ export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) =
       utterance.lang = 'ja-JP';
       utterance.rate = 0.9;
 
+      // Assign female voice if found
+      const femaleVoice = getJapaneseFemaleVoice();
+      if (femaleVoice) {
+        utterance.voice = femaleVoice;
+      }
+
       utterance.onend = () => {
         setPlayingKanjiId(null);
       };
@@ -61,7 +116,7 @@ export const LevelOverviewView: React.FC<LevelOverviewViewProps> = ({ level }) =
       window.speechSynthesis.speak(utterance);
       setPlayingKanjiId(kanjiId);
     },
-    [playingKanjiId]
+    [playingKanjiId, getJapaneseFemaleVoice]
   );
 
   return (
