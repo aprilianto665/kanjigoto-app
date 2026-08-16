@@ -100,7 +100,7 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
           {/* Green Counter Pill */}
           <div className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#BBF7D0] border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)]">
             <LanguageIcon className="w-4 h-4 text-stone-900 stroke-2" />
-            <span className="font-handwritten text-base font-bold text-stone-900 tracking-wide">
+            <span className="font-header font-bold text-base text-stone-900 tracking-tight">
               {totalSelectedCount} Kanji Selected
             </span>
           </div>
@@ -114,7 +114,7 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
               totalSelectedCount === 0 ? 'opacity-40 cursor-not-allowed shadow-none' : ''
             }`}
           >
-            <div className="w-full h-full flex items-center justify-center gap-1 px-3 py-1.5 border-2 border-dashed border-[#F472B6] rounded-[7px] text-red-900 font-handwritten text-base font-bold">
+            <div className="w-full h-full flex items-center justify-center gap-1 px-3 py-1.5 border-2 border-dashed border-[#F472B6] rounded-[7px] text-red-900 font-header font-bold text-base">
               <XMarkIcon className="w-4 h-4 text-red-900 stroke-2" />
               <span>Clear</span>
             </div>
