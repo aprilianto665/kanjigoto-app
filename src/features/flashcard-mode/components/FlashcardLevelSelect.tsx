@@ -114,7 +114,7 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
               totalSelectedCount === 0 ? 'opacity-40 cursor-not-allowed shadow-none' : ''
             }`}
           >
-            <div className="w-full h-full flex items-center justify-center gap-1 px-3 py-1.5 border-2 border-dashed border-[#F472B6] rounded-[7px] text-red-900 font-header font-bold text-base">
+            <div className="w-full h-full flex items-center justify-center gap-1 px-3 py-1.5 border-2 border-dashed border-[#F472B6] rounded-[7px] text-red-900 font-handwritten font-bold text-base">
               <XMarkIcon className="w-4 h-4 text-red-900 stroke-2" />
               <span>Clear</span>
             </div>
@@ -133,7 +133,7 @@ export const FlashcardLevelSelect: React.FC<FlashcardLevelSelectProps> = ({
           }`}
         >
           <div className="w-full h-full flex items-center justify-center py-2.5 px-4 border-2 border-dashed border-[#5C8CE0] rounded-[10px]">
-            <span className="font-header font-black text-xl text-stone-900 tracking-wider uppercase">
+            <span className="font-handwritten font-bold text-2xl text-stone-900 tracking-widest uppercase">
               START
             </span>
           </div>
