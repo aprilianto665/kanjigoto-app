@@ -89,7 +89,9 @@ export const DrillSessionView: React.FC<DrillSessionViewProps> = ({
               autoCorrect="off"
               autoCapitalize="off"
               spellCheck="false"
-              className="w-full text-center font-kanji font-bold text-2xl text-stone-900 bg-transparent outline-none placeholder:font-handwritten placeholder:text-stone-400 placeholder:text-base placeholder:font-normal"
+              className={`w-full text-center font-bold text-2xl text-stone-900 bg-transparent outline-none placeholder:font-handwritten placeholder:text-stone-400 placeholder:text-xl placeholder:font-bold ${
+                inputText ? 'font-kanji' : 'font-handwritten'
+              }`}
             />
           </div>
         </div>
