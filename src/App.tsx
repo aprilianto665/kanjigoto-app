@@ -11,9 +11,16 @@ import {
   FlashcardChapterSelect,
   FlashcardView,
 } from './features/flashcard-mode';
+import {
+  DrillLevelSelect,
+  DrillChapterSelect,
+  DrillSessionView,
+  DrillCompletionView,
+} from './features/drill-mode';
 import { getAllKanji, getKanjiByLevel } from './data';
 
 type FlashcardStep = 'level-select' | 'chapter-select' | 'session';
+type DrillStep = 'level-select' | 'chapter-select' | 'session' | 'completion';
 
 export default function App() {
   // Navigation tab: 'kanji' (Folders tab), 'flashcard' (Cards tab), or 'drill'
@@ -26,6 +33,12 @@ export default function App() {
   const [flashcardStep, setFlashcardStep] = useState<FlashcardStep>('level-select');
   const [selectedFlashcardLevel, setSelectedFlashcardLevel] = useState<LevelInfo | null>(null);
   const [selectedKanjiIds, setSelectedKanjiIds] = useState<Set<string>>(new Set());
+
+  // Drill Mode State
+  const [drillStep, setDrillStep] = useState<DrillStep>('level-select');
+  const [selectedDrillLevel, setSelectedDrillLevel] = useState<LevelInfo | null>(null);
+  const [selectedDrillKanjiIds, setSelectedDrillKanjiIds] = useState<Set<string>>(new Set());
+  const [drillDuration, setDrillDuration] = useState<number>(0);
 
   const allKanji = useMemo(() => getAllKanji(), []);
 
@@ -40,6 +53,17 @@ export default function App() {
     }
     return getKanjiByLevel('a1');
   }, [allKanji, selectedKanjiIds, selectedFlashcardLevel]);
+
+  // Compute active practice Kanji items for Drill session
+  const activeDrillItems = useMemo<KanjiItem[]>(() => {
+    if (selectedDrillKanjiIds.size > 0) {
+      return allKanji.filter((item: KanjiItem) => selectedDrillKanjiIds.has(item.id));
+    }
+    if (selectedDrillLevel) {
+      return getKanjiByLevel(selectedDrillLevel.id);
+    }
+    return getKanjiByLevel('a1');
+  }, [allKanji, selectedDrillKanjiIds, selectedDrillLevel]);
 
   // Flashcard chapter toggle handlers
   const handleToggleChapter = (chapterItems: KanjiItem[]) => {
@@ -81,6 +105,61 @@ export default function App() {
     setActiveTab('flashcard');
   };
 
+  // Drill chapter toggle handlers
+  const handleToggleDrillChapter = (chapterItems: KanjiItem[]) => {
+    setSelectedDrillKanjiIds((prev) => {
+      const next = new Set(prev);
+      const allIncluded = chapterItems.every((item) => next.has(item.id));
+
+      if (allIncluded) {
+        chapterItems.forEach((item) => next.delete(item.id));
+      } else {
+        chapterItems.forEach((item) => next.add(item.id));
+      }
+      return next;
+    });
+  };
+
+  const handleToggleAllInDrillLevel = (levelItems: KanjiItem[]) => {
+    setSelectedDrillKanjiIds((prev) => {
+      const next = new Set(prev);
+      const allIncluded =
+        levelItems.length > 0 && levelItems.every((item) => next.has(item.id));
+
+      if (allIncluded) {
+        levelItems.forEach((item) => next.delete(item.id));
+      } else {
+        levelItems.forEach((item) => next.add(item.id));
+      }
+      return next;
+    });
+  };
+
+  const handleClearDrillSelection = () => {
+    setSelectedDrillKanjiIds(new Set());
+  };
+
+  const handleStartDrillSession = () => {
+    if (selectedDrillKanjiIds.size === 0) return;
+    setDrillStep('session');
+    setActiveTab('drill');
+  };
+
+  const handleDrillComplete = (durationInSeconds: number) => {
+    setDrillDuration(durationInSeconds);
+    setDrillStep('completion');
+  };
+
+  const handleDrillPlayAgain = () => {
+    setDrillStep('session');
+  };
+
+  const handleDrillDone = () => {
+    setDrillStep('level-select');
+    setSelectedDrillLevel(null);
+    setSelectedDrillKanjiIds(new Set());
+  };
+
   const handleBack = () => {
     if (activeTab === 'kanji') {
       // Return from LevelOverviewView to LevelSelectionView
@@ -97,27 +176,47 @@ export default function App() {
         setFlashcardStep('level-select');
       }
     } else if (activeTab === 'drill') {
-      setActiveTab('kanji');
+      if (drillStep === 'completion') {
+        setDrillStep('level-select');
+        setSelectedDrillLevel(null);
+      } else if (drillStep === 'session') {
+        if (selectedDrillLevel) {
+          setDrillStep('chapter-select');
+        } else {
+          setDrillStep('level-select');
+        }
+      } else if (drillStep === 'chapter-select') {
+        setSelectedDrillLevel(null);
+        setDrillStep('level-select');
+      } else {
+        setActiveTab('kanji');
+      }
     }
   };
 
   const handleGoHome = () => {
     setSelectedOverviewLevel(null);
     setSelectedFlashcardLevel(null);
+    setSelectedDrillLevel(null);
     setFlashcardStep('level-select');
+    setDrillStep('level-select');
     setActiveTab('kanji');
   };
 
   // Determine BottomNavBar mode dynamically:
   // - 'overview' in LevelOverviewView: Back, Cards, Drill
   // - 'session' in Flashcard sub-pages: Back, Kanji (Home), Drill
+  // - 'drill-session' in Drill sub-pages: Back, Kanji (Home), Cards
   // - 'home' in root level lists: Folders, Cards, Drill tabs
-  const getNavMode = (): 'home' | 'session' | 'overview' => {
+  const getNavMode = (): 'home' | 'session' | 'overview' | 'drill-session' => {
     if (activeTab === 'kanji' && selectedOverviewLevel !== null) {
       return 'overview';
     }
     if (activeTab === 'flashcard' && flashcardStep !== 'level-select') {
       return 'session';
+    }
+    if (activeTab === 'drill' && drillStep !== 'level-select') {
+      return 'drill-session';
     }
     return 'home';
   };
@@ -166,16 +265,47 @@ export default function App() {
         </>
       )}
 
-      {/* 3. Drill Mode Placeholder */}
+      {/* 3. Drill Mode Flow (Selection -> Practice -> Completion) */}
       {activeTab === 'drill' && (
-        <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
-          <h2 className="font-header font-bold text-2xl text-stone-900 mb-2">
-            Drill Mode
-          </h2>
-          <p className="font-handwritten text-base text-stone-600 mb-4">
-            Coming soon in the next update!
-          </p>
-        </div>
+        <>
+          {drillStep === 'level-select' && (
+            <DrillLevelSelect
+              selectedKanjiIds={selectedDrillKanjiIds}
+              onSelectLevel={(lvl) => {
+                setSelectedDrillLevel(lvl);
+                setDrillStep('chapter-select');
+              }}
+              onClearSelection={handleClearDrillSelection}
+              onStartDrill={handleStartDrillSession}
+            />
+          )}
+
+          {drillStep === 'chapter-select' && selectedDrillLevel && (
+            <DrillChapterSelect
+              level={selectedDrillLevel}
+              selectedKanjiIds={selectedDrillKanjiIds}
+              onToggleChapter={handleToggleDrillChapter}
+              onToggleAllInLevel={handleToggleAllInDrillLevel}
+            />
+          )}
+
+          {drillStep === 'session' && (
+            <DrillSessionView
+              items={activeDrillItems}
+              onBack={handleBack}
+              onComplete={handleDrillComplete}
+            />
+          )}
+
+          {drillStep === 'completion' && (
+            <DrillCompletionView
+              durationInSeconds={drillDuration}
+              items={activeDrillItems}
+              onPlayAgain={handleDrillPlayAgain}
+              onDone={handleDrillDone}
+            />
+          )}
+        </>
       )}
 
       {/* Persistent Bottom Action Bar */}
@@ -188,6 +318,8 @@ export default function App() {
             setSelectedOverviewLevel(null);
           } else if (tab === 'flashcard') {
             // Keep existing flashcard selection state or step
+          } else if (tab === 'drill') {
+            // Keep existing drill selection state or step
           }
         }}
         onBack={handleBack}
@@ -199,9 +331,13 @@ export default function App() {
           setActiveTab('flashcard');
         }}
         onStartDrill={() => {
+          setSelectedOverviewLevel(null);
+          setSelectedDrillLevel(null);
+          setDrillStep('level-select');
           setActiveTab('drill');
         }}
       />
     </AppShell>
   );
 }
+

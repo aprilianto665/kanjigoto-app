@@ -19,6 +19,10 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
+
+  input::placeholder {
+    font-family: var(--font-latin);
+  }
 }
 
 /* Custom Typography Utilities */
