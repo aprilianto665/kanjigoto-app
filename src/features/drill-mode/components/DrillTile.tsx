@@ -22,13 +22,6 @@ export const DrillTile: React.FC<DrillTileProps> = ({ item }) => {
       <div className="w-full h-full bg-white border-2 border-stone-900 rounded-3xl p-3 flex flex-col items-center justify-between shadow-[2px_4px_0px_0px_rgba(0,0,0,0.18)]">
         {/* Inner Dashed Border Container */}
         <div className="w-full h-full border-2 border-dashed border-stone-300 rounded-2xl flex flex-col items-center justify-center p-4 relative overflow-hidden bg-white">
-          {/* Mini Chapter tag */}
-          <div className="w-full flex items-center justify-end absolute top-2.5 right-3.5">
-            <span className="text-xs font-handwritten font-bold text-stone-400">
-              Ch. {item.chapter}
-            </span>
-          </div>
-
           {/* Large Kanji Character */}
           <div className="my-auto w-full flex flex-col items-center justify-center px-2">
             <span
