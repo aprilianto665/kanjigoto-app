@@ -38,6 +38,9 @@ export function useDrillSession(items: KanjiItem[]): DrillSessionState {
     return queue[currentIndex];
   }, [queue, currentIndex]);
 
+  // Helper function to normalize readings by removing prefix/suffix tildes (~, ～, 〜) and extra whitespace
+  const normalizeReading = (str: string) => str.replace(/[~～〜\s]/g, '');
+
   const handleInputChange = useCallback(
     (rawVal: string) => {
       if (isCompleted || !currentCard) return;
@@ -46,9 +49,11 @@ export function useDrillSession(items: KanjiItem[]): DrillSessionState {
       const kana = wanakana.toKana(rawVal, { IMEMode: true });
       setInputText(kana);
 
-      const cleanKana = kana.trim();
+      const cleanKana = normalizeReading(kana);
+      if (!cleanKana) return;
+
       const isMatch = currentCard.furigana.some(
-        (f) => f.trim() === cleanKana
+        (f) => normalizeReading(f) === cleanKana
       );
 
       if (isMatch) {
