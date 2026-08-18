@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import {
-  TrophyIcon,
   ArrowPathIcon,
   CheckIcon,
   FolderIcon,
@@ -58,13 +57,17 @@ export const DrillCompletionView: React.FC<DrillCompletionViewProps> = ({
         </p>
       </header>
 
-      {/* Center Trophy / Result Card */}
+      {/* Center Logo / Result Card */}
       <div className="flex-1 flex items-center justify-center my-auto py-3">
         <div className="w-full max-w-[280px] bg-white border-2 border-stone-900 rounded-3xl p-3 shadow-[2px_4px_0px_0px_rgba(0,0,0,0.18)]">
           <div className="border-2 border-dashed border-stone-300 rounded-2xl p-6 flex flex-col items-center justify-center text-center gap-4 bg-white">
-            {/* Trophy Icon Pill */}
-            <div className="w-16 h-16 rounded-2xl bg-[#FEF08A] border-2 border-stone-900 flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)]">
-              <TrophyIcon className="w-9 h-9 text-amber-600 stroke-2" />
+            {/* Logo Image */}
+            <div className="w-20 h-20 relative flex items-center justify-center">
+              <img
+                src="/kanjigoto_icon.png"
+                alt="KanjiGoto Logo"
+                className="w-full h-full object-contain drop-shadow-sm"
+              />
             </div>
 
             {/* Congratulations Text */}
