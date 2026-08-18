@@ -300,7 +300,7 @@ export default function App() {
           {drillStep === 'completion' && (
             <DrillCompletionView
               durationInSeconds={drillDuration}
-              totalCards={activeDrillItems.length}
+              items={activeDrillItems}
               onPlayAgain={handleDrillPlayAgain}
               onDone={handleDrillDone}
             />

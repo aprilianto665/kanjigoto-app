@@ -1,26 +1,28 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   TrophyIcon,
   ArrowPathIcon,
   CheckIcon,
-  ClockIcon,
+  FolderIcon,
   LanguageIcon,
 } from '@heroicons/react/24/outline';
+import type { KanjiItem } from '../../../types';
 import { WobblyButton } from '../../../components/ui/WobblyButton';
 
 interface DrillCompletionViewProps {
   durationInSeconds: number;
-  totalCards: number;
+  items: KanjiItem[];
   onPlayAgain: () => void;
   onDone: () => void;
 }
 
 export const DrillCompletionView: React.FC<DrillCompletionViewProps> = ({
   durationInSeconds,
-  totalCards,
+  items,
   onPlayAgain,
   onDone,
 }) => {
+  const totalCards = items.length;
   const minutes = Math.floor(durationInSeconds / 60);
   const seconds = durationInSeconds % 60;
 
@@ -30,6 +32,19 @@ export const DrillCompletionView: React.FC<DrillCompletionViewProps> = ({
           seconds === 1 ? 'Second' : 'Seconds'
         }`
       : `${seconds} ${seconds === 1 ? 'Second' : 'Seconds'}`;
+
+  const levelLabel = useMemo(() => {
+    const levelOrder = ['A1', 'A2.1', 'A2.2', 'B1'];
+    const detected = new Set<string>();
+    for (const item of items) {
+      if (item.id.startsWith('a1-')) detected.add('A1');
+      else if (item.id.startsWith('a2-1-')) detected.add('A2.1');
+      else if (item.id.startsWith('a2-2-')) detected.add('A2.2');
+      else if (item.id.startsWith('b1-')) detected.add('B1');
+    }
+    const sorted = levelOrder.filter((lvl) => detected.has(lvl));
+    return sorted.length > 0 ? sorted.join(', ') : 'A1';
+  }, [items]);
 
   return (
     <div className="flex-1 flex flex-col justify-between min-h-0 overflow-y-auto no-scrollbar px-5 pt-8 pb-4 max-w-sm mx-auto w-full">
@@ -75,13 +90,13 @@ export const DrillCompletionView: React.FC<DrillCompletionViewProps> = ({
                 </span>
               </div>
 
-              <div className="bg-stone-50 border border-stone-200 rounded-xl p-2 flex flex-col items-center">
-                <ClockIcon className="w-4 h-4 text-stone-500 mb-1" />
-                <span className="font-header font-bold text-base text-stone-900">
-                  {durationInSeconds}s
+              <div className="bg-stone-50 border border-stone-200 rounded-xl p-2 flex flex-col items-center justify-center">
+                <FolderIcon className="w-4 h-4 text-stone-500 mb-1" />
+                <span className="font-header font-bold text-base text-stone-900 truncate max-w-full px-1">
+                  {levelLabel}
                 </span>
                 <span className="font-handwritten text-xs text-stone-500 font-bold">
-                  Total Time
+                  Level
                 </span>
               </div>
             </div>
