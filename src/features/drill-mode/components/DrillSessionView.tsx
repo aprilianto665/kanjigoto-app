@@ -58,7 +58,7 @@ export const DrillSessionView: React.FC<DrillSessionViewProps> = ({
   }
 
   return (
-    <div className="flex-1 flex flex-col justify-between min-h-0 overflow-y-auto no-scrollbar px-5 pt-6 pb-4 max-w-sm mx-auto w-full">
+    <div className="flex-1 flex flex-col min-h-0 overflow-y-auto no-scrollbar px-5 pt-6 pb-4 max-w-sm mx-auto w-full">
       {/* Header Section */}
       <header className="shrink-0 text-center mb-2">
         <h1 className="font-header font-extrabold text-2xl text-stone-900 tracking-tight">
@@ -69,30 +69,30 @@ export const DrillSessionView: React.FC<DrillSessionViewProps> = ({
         </p>
       </header>
 
-      {/* Main Card Display */}
-      <div className="flex-1 flex items-center justify-center my-auto py-2">
+      {/* Main Card + Input Grouped Closely */}
+      <div className="flex-1 flex flex-col items-center justify-center gap-3.5 my-auto py-2 w-full max-w-xs mx-auto">
         <DrillTile item={currentCard} />
-      </div>
 
-      {/* Input Area */}
-      <div className="shrink-0 w-full max-w-xs mx-auto mt-2 mb-2">
-        <div className="relative p-[3px] bg-white border-2 border-stone-900 rounded-2xl shadow-[2px_3px_0px_0px_rgba(0,0,0,0.18)]">
-          <div className="border-2 border-dashed border-stone-300 rounded-[10px] p-2 bg-white flex items-center">
-            <input
-              ref={inputRef}
-              type="text"
-              value={inputText}
-              onChange={(e) => handleInputChange(e.target.value)}
-              placeholder="Type kana or romaji..."
-              autoFocus
-              autoComplete="off"
-              autoCorrect="off"
-              autoCapitalize="off"
-              spellCheck="false"
-              className={`w-full text-center font-bold text-2xl text-stone-900 bg-transparent outline-none placeholder:font-handwritten placeholder:text-stone-400 placeholder:text-xl placeholder:font-bold ${
-                inputText ? 'font-kanji' : 'font-handwritten'
-              }`}
-            />
+        {/* Input Area */}
+        <div className="w-full">
+          <div className="relative p-[3px] bg-white border-2 border-stone-900 rounded-2xl shadow-[2px_3px_0px_0px_rgba(0,0,0,0.18)]">
+            <div className="border-2 border-dashed border-stone-300 rounded-[10px] p-2 bg-white flex items-center">
+              <input
+                ref={inputRef}
+                type="text"
+                value={inputText}
+                onChange={(e) => handleInputChange(e.target.value)}
+                placeholder="Type kana or romaji..."
+                autoFocus
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
+                className={`w-full text-center font-bold text-2xl text-stone-900 bg-transparent outline-none placeholder:font-handwritten placeholder:text-stone-400 placeholder:text-xl placeholder:font-bold ${
+                  inputText ? 'font-kanji' : 'font-handwritten'
+                }`}
+              />
+            </div>
           </div>
         </div>
       </div>
