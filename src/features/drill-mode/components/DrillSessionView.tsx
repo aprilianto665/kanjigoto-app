@@ -93,9 +93,6 @@ export const DrillSessionView: React.FC<DrillSessionViewProps> = ({
             />
           </div>
         </div>
-        <p className="text-center font-handwritten text-xs text-stone-400 font-bold mt-2">
-          Auto-advances when answer matches reading
-        </p>
       </div>
     </div>
   );
