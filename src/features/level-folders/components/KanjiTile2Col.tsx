@@ -29,7 +29,7 @@ export const KanjiTile2Col: React.FC<KanjiTile2ColProps> = ({
   return (
     <div
       onClick={onClick}
-      className={`w-full border-2 border-stone-900 rounded-2xl p-[3px] cursor-pointer transition-colors duration-150 select-none ${
+      className={`w-full h-full border-2 border-stone-900 rounded-2xl p-[3px] cursor-pointer transition-colors duration-150 select-none ${
         isActive
           ? 'bg-[#F0EFF4]'
           : 'bg-white hover:bg-[#F0EFF4] active:bg-[#E5E4EB]'
@@ -38,7 +38,7 @@ export const KanjiTile2Col: React.FC<KanjiTile2ColProps> = ({
         boxShadow: '2.5px 2.5px 0px 0px rgba(0, 0, 0, 0.22)',
       }}
     >
-      <div className="w-full h-full border-2 border-dashed border-stone-300 rounded-[10px] p-2 flex flex-col items-center justify-between min-h-[122px] text-center pointer-events-none">
+      <div className="w-full h-full border-2 border-dashed border-stone-300 rounded-[10px] p-2 flex flex-col items-center justify-between min-h-[145px] text-center pointer-events-none">
         {/* Top: Furigana / Hiragana */}
         <div className="text-xs font-kanji font-medium text-stone-600 tracking-wider truncate max-w-full px-1">
           {furiganaText}
@@ -61,7 +61,7 @@ export const KanjiTile2Col: React.FC<KanjiTile2ColProps> = ({
             {romajiText}
           </div>
           {item.meaning && (
-            <div className="text-[10px] sm:text-xs font-handwritten text-stone-500 truncate max-w-full leading-tight">
+            <div className="text-[10px] sm:text-xs font-handwritten text-stone-500 max-w-full leading-tight break-words">
               {item.meaning}
             </div>
           )}
