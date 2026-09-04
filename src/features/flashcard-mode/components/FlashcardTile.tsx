@@ -73,10 +73,10 @@ export const FlashcardTile: React.FC<FlashcardTileProps> = ({
                 </span>
               </div>
 
-              {/* Reading details in center */}
-              <div className="my-auto w-full flex flex-col items-center justify-center gap-3 text-center px-1">
-                <div className="space-y-1 w-full">
-                  <p className="text-xs uppercase tracking-widest font-bold text-stone-400">
+              {/* Reading & Meaning details in center */}
+              <div className="my-auto w-full flex flex-col items-center justify-center gap-2 sm:gap-2.5 text-center px-1">
+                <div className="space-y-0.5 w-full">
+                  <p className="text-[11px] uppercase tracking-widest font-bold text-stone-400">
                     Furigana
                   </p>
                   <p
@@ -88,15 +88,28 @@ export const FlashcardTile: React.FC<FlashcardTileProps> = ({
                   </p>
                 </div>
 
-                <div className="w-12 h-0.5 bg-stone-200 rounded-full" />
+                <div className="w-10 h-0.5 bg-stone-200 rounded-full" />
 
-                <div className="space-y-0.5 w-full">
-                  <p className="text-xs uppercase tracking-widest font-bold text-stone-400">
-                    Romaji
-                  </p>
-                  <p className="font-handwritten text-2xl font-bold text-stone-700 tracking-wide break-words leading-snug">
-                    {item.romaji.join(', ')}
-                  </p>
+                <div className="space-y-2 w-full">
+                  <div className="space-y-0.5 w-full">
+                    <p className="text-[11px] uppercase tracking-widest font-bold text-stone-400">
+                      Romaji
+                    </p>
+                    <p className="font-handwritten text-xl sm:text-2xl font-bold text-stone-700 tracking-wide break-words leading-snug">
+                      {item.romaji.join(', ')}
+                    </p>
+                  </div>
+
+                  {item.meaning && (
+                    <div className="space-y-0.5 w-full">
+                      <p className="text-[11px] uppercase tracking-widest font-bold text-stone-400">
+                        Meaning
+                      </p>
+                      <p className="font-handwritten text-base sm:text-lg font-bold text-stone-800 tracking-wide break-words leading-snug">
+                        {item.meaning}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
 

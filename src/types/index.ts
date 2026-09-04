@@ -3,6 +3,7 @@ export interface KanjiItem {
   kanji: string;       // Karakter Kanji / kata, contoh: '魚', '日本'
   furigana: string[];  // Cara baca Kana dalam array, contoh: ['さかな'], ['にほん', 'にっぽん']
   romaji: string[];    // Cara baca Romaji dalam array, contoh: ['sakana'], ['nihon', 'nippon']
+  meaning: string;     // Arti / terjemahan bahasa Inggris
   chapter: number;     // Topik/Bab kemunculan Kanji (kolom 'か')
   topic?: string;      // Nama Topik opsional jika relevan
 }
