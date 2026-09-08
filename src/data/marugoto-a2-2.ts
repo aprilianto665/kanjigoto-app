@@ -79,7 +79,7 @@ export const MARUGOTO_A2_2: KanjiItem[] = [
   { id: 'a2-2-69', kanji: '教えます', furigana: ['おしえます'], romaji: ['oshiemasu'], meaning: 'to teach, tell', chapter: 7 },
   { id: 'a2-2-70', kanji: '祭り', furigana: ['まつり'], romaji: ['matsuri'], meaning: 'festival', chapter: 8 },
   { id: 'a2-2-71', kanji: '日本祭', furigana: ['にほんまつり'], romaji: ['nihonmatsuri'], meaning: 'Japanese festival', chapter: 8 },
-  { id: 'a2-2-72', kanji: '会場', furigana: ['kaijou'], romaji: ['kaijou'], meaning: 'venue, event hall', chapter: 8 },
+  { id: 'a2-2-72', kanji: '会場', furigana: ['かいじょう'], romaji: ['kaijou'], meaning: 'venue, event hall', chapter: 8 },
   { id: 'a2-2-73', kanji: '入場料', furigana: ['にゅうじょうりょう'], romaji: ['nyuujouryou'], meaning: 'admission fee', chapter: 8 },
   { id: 'a2-2-74', kanji: '参加者', furigana: ['さんかしゃ'], romaji: ['sankasha'], meaning: 'participant', chapter: 8 },
   { id: 'a2-2-75', kanji: '急ぎます', furigana: ['いそぎます'], romaji: ['isogimasu'], meaning: 'to hurry', chapter: 8 },
