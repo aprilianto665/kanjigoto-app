@@ -88,7 +88,7 @@ export const MARUGOTO_A2_1: KanjiItem[] = [
   { id: 'a2-1-76', kanji: '高校', furigana: ['こうこう'], romaji: ['koukou'], meaning: 'high school', chapter: 9 },
   { id: 'a2-1-77', kanji: '大学', furigana: ['だいがく'], romaji: ['daigaku'], meaning: 'university, college', chapter: 9 },
   { id: 'a2-1-78', kanji: '先生', furigana: ['せんせい'], romaji: ['sensei'], meaning: 'teacher', chapter: 9 },
-  { id: 'a2-1-79', kanji: '学生', furigana: [' gakusei '], romaji: ['gakusei'], meaning: 'student', chapter: 9 },
+  { id: 'a2-1-79', kanji: '学生', furigana: [' がくせい '], romaji: ['gakusei'], meaning: 'student', chapter: 9 },
   { id: 'a2-1-80', kanji: '～年生', furigana: ['～ねんせい'], romaji: ['~nensei'], meaning: '... grade / year student', chapter: 9 },
   { id: 'a2-1-81', kanji: '勉強', furigana: ['べんきょう'], romaji: ['benkyou'], meaning: 'study', chapter: 9 },
   { id: 'a2-1-82', kanji: '文化', furigana: ['ぶんか'], romaji: ['bunka'], meaning: 'culture', chapter: 10 },
