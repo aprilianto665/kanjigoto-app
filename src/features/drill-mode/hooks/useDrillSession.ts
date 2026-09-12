@@ -49,11 +49,11 @@ export function useDrillSession(items: KanjiItem[]): DrillSessionState {
       const kana = wanakana.toKana(rawVal, { IMEMode: true });
       setInputText(kana);
 
-      const cleanKana = normalizeReading(kana);
+      const cleanKana = normalizeReading(wanakana.toHiragana(kana));
       if (!cleanKana) return;
 
       const isMatch = currentCard.furigana.some(
-        (f) => normalizeReading(f) === cleanKana
+        (f) => normalizeReading(wanakana.toHiragana(f)) === cleanKana
       );
 
       if (isMatch) {
