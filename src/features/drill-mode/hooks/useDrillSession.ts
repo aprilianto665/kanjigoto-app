@@ -56,14 +56,16 @@ export function useDrillSession(items: KanjiItem[]): DrillSessionState {
         (f) => normalizeReading(wanakana.toHiragana(f)) === cleanKana
       );
 
-      if (isMatch) {
-        setInputText('');
-        if (currentIndex < queue.length - 1) {
-          setCurrentIndex((prev) => prev + 1);
-        } else {
-          setEndTime(Date.now());
-          setIsCompleted(true);
-        }
+      if (!isMatch) return;
+
+      setInputText('');
+
+      const isLastCard = currentIndex >= queue.length - 1;
+      if (isLastCard) {
+        setEndTime(Date.now());
+        setIsCompleted(true);
+      } else {
+        setCurrentIndex((prev) => prev + 1);
       }
     },
     [currentCard, currentIndex, isCompleted, queue.length]
