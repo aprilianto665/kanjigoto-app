@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ArrowsRightLeftIcon,
   ArrowLeftIcon,
@@ -30,6 +30,43 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
     prevCard,
     shuffleQueue,
   } = useFlashcardSession(items);
+
+  useEffect(() => {
+    if (totalCards === 0 || !currentCard) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // 1. Abaikan event jika user sedang mengetik di input box atau textarea
+      const target = event.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      // 2. Routing berdasarkan tombol
+      if (event.code === 'Space' || event.key === ' ') {
+        event.preventDefault(); // Mencegah scrolling default browser
+        flipCard();
+      } else if (event.code === 'ArrowLeft' || event.key === 'ArrowLeft') {
+        if (!isFirstCard) {
+          prevCard();
+        }
+      } else if (event.code === 'ArrowRight' || event.key === 'ArrowRight') {
+        if (!isLastCard) {
+          nextCard();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [totalCards, currentCard, isFirstCard, isLastCard, flipCard, prevCard, nextCard]);
 
   if (totalCards === 0 || !currentCard) {
     return (
