@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import type { KanjiItem } from '../../../types';
-import { WobblyButton } from '../../../components/ui/WobblyButton';
+import { WobblyButton, StepperProgressBar } from '../../../components/ui';
 import { DrillTile } from './DrillTile';
 import { useDrillSession } from '../hooks/useDrillSession';
 
@@ -67,6 +67,11 @@ export const DrillSessionView: React.FC<DrillSessionViewProps> = ({
         <p className="font-handwritten text-base font-bold text-stone-600 mt-0.5">
           {currentIndex + 1} / {totalCards} Kanji
         </p>
+        <StepperProgressBar
+          current={currentIndex + 1}
+          total={totalCards}
+          className="max-w-[240px] mx-auto mt-2"
+        />
       </header>
 
       {/* Main Card + Input Grouped Closely */}

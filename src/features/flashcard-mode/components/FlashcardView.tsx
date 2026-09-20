@@ -5,7 +5,7 @@ import {
   ArrowRightIcon,
 } from '@heroicons/react/24/outline';
 import type { KanjiItem } from '../../../types';
-import { WobblyButton } from '../../../components/ui/WobblyButton';
+import { WobblyButton, StepperProgressBar } from '../../../components/ui';
 import { FlashcardTile } from './FlashcardTile';
 import { useFlashcardSession } from '../hooks/useFlashcardSession';
 
@@ -94,6 +94,11 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
         <p className="font-handwritten text-base font-bold text-stone-600 mt-0.5">
           {currentIndex + 1} / {totalCards} Kanji
         </p>
+        <StepperProgressBar
+          current={currentIndex + 1}
+          total={totalCards}
+          className="max-w-[240px] mx-auto mt-2"
+        />
       </header>
 
       {/* Main Flashcard Display */}
